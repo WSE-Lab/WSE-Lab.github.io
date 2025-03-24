@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ModelCopilot - WSE Laboratory</title>
+    <meta name="description" content="ModelCopilot at WSE Laboratory" />
+    <meta name="author" content="Man Zhang and Lovable" />
+
+    <!-- Font import -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --accent-color: #1a7cff;
+        --accent-light: #3d8cfa;
+        --neutral-50: #f8f9fa;
+        --neutral-100: #f1f3f5;
+        --neutral-300: #dee2e6;
+        --neutral-800: #343a40;
+        --text-color: #212529;
+        --text-muted: #6c757d;
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--neutral-50);
+      }
+      
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+      }
+      
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 2rem;
+        margin: 0 auto;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .btn-primary {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+      }
+      
+      .btn-primary:hover {
+        background-color: var(--accent-light);
+        text-decoration: none;
+      }
+      
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-color);
+        border: 1px solid var(--neutral-300);
+      }
+      
+      .btn-secondary:hover {
+        background-color: var(--neutral-100);
+        text-decoration: none;
+      }
+      
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--neutral-100);
+        transition: all 0.3s ease;
+      }
+      
+      .navbar.scrolled {
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-logo-container{
+        justify-content: flex-start;
+      }
+      
+      .navbar-logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text-color);
+      }
+      
+      .navbar-links {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .navbar-link {
+        color: var(--text-color);
+        font-weight: 500;
+      }
+      
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      /* Page header */
+      .page-header {
+        padding: 8rem 0 4rem;
+        background: linear-gradient(to bottom right, rgba(26, 124, 255, 0.1), rgba(26, 124, 255, 0.05));
+        text-align: center;
+      }
+      
+      .page-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      
+      .page-description {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        max-width: 700px;
+        margin: 0 auto 2rem;
+      }
+      
+      /* Research content */
+      .section {
+        padding: 5rem 0;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      
+      .section-subtitle {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        text-align: center;
+        max-width: 42rem;
+        margin: 0 auto 3rem;
+      }
+      
+      .research-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+      
+      .research-card-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        background-color: #f0f5ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-color);
+        font-size: 3rem;
+      }
+      
+      .research-card-content {
+        padding: 2rem;
+      }
+      
+      .research-card-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      
+      .research-card-text {
+        margin-bottom: 1.5rem;
+      }
+
+      .research-card-ul {
+        padding: 0.2rem 2rem;
+      }
+      
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+      }
+      
+      .data-table th, .data-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--neutral-100);
+      }
+      
+      .data-table th {
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+      
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+      
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+      
+      .metric-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+      
+      .metric-value {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+      }
+      
+      .metric-label {
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      
+      .team-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      
+      /* Back link */
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        font-weight: 500;
+      }
+      
+      .back-link svg {
+        margin-right: 0.5rem;
+      }
+      
+      /* Footer */
+      .footer {
+        background-color: var(--neutral-100);
+        padding: 4rem 0 2rem;
+      }
+      
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      
+      .footer-description {
+        margin-bottom: 1.5rem;
+        color: var(--text-muted);
+      }
+      
+      .footer-heading {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+      
+      .footer-links {
+        list-style-type: none;
+      }
+      
+      .footer-item {
+        margin-bottom: 0.75rem;
+      }
+      
+      .footer-link {
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+      }
+      
+      .footer-link:hover {
+        color: var(--accent-color);
+      }
+      
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--neutral-300);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+      }
+
+      .modelcopilot-icon {
+        width: 5.16rem;
+        height: 1.5rem;
+      }
+
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 2.5rem;
+        }
+        
+        .section-title {
+          font-size: 2rem;
+        }
+        
+        .research-card-image {
+          height: 200px;
+        }
+        
+        .navbar-links {
+          display: none;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
+        .navbar-links.active {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: white;
+          padding: 1rem;
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+          border-top: 1px solid var(--neutral-100);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container navbar-container">
+
+        <div class="navbar-logo-container">
+          <img src="imgs/modelcopilot-icon.png" class="modelcopilot-icon" alt="ModelCopilot Icon">
+          <a href="index.html" class="navbar-logo"> at WSELab</a>
+        </div>
+
+
+        <nav class="navbar-links">
+          <a href="index.html#about" class="navbar-link">About</a>
+          <a href="index.html#research" class="navbar-link">Research</a>
+<!--          <a href="index.html#publications" class="navbar-link">Publications</a>-->
+          <a href="index.html#team" class="navbar-link">Team</a>
+          <a href="index.html#contact" class="navbar-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">ModelCopilot - Where Models Craft Meaning</h1>
+        <p class="page-description">
+          Turn Models into Purposeful, Adaptive Enablers.
+        </p>
+        <a href="index.html" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"></path>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </section>
+
+    <!-- Research Overview -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Research Overview</h2>
+        <p class="section-subtitle">
+          Making models 'come alive'—continuously learning and collaborating adaptively as software evolves.
+        </p>
+        
+        <div class="research-card">
+          <div class="research-card-image">
+            <span>demo video</span>
+          </div>
+          <div class="research-card-content">
+            <h3 class="research-card-title">ModelCopilot - Making models 'come alive'</h3>
+            <p class="research-card-text">
+              ModelCopilot is a platform that transforms models—spanning prior knowledge systems, machine learning frameworks, and more—into dynamic, context-aware collaborators.
+              It ensures models remain relevant, actionable, and continuously evolving throughout the lifecycle of complex intelligent software systems, from conceptualization and design to adaptation and autonomous evolution.
+            </p>
+<!--            <p class="research-card-text">-->
+<!--            </p>-->
+<!--            <a href="#" class="btn btn-primary">Download Research Paper</a>-->
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric-card">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">KerML Concrete Syntax</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">SysML V2 Concrete Syntax</div>
+          </div>
+<!--          <div class="metric-card">-->
+<!--            <div class="metric-value">8</div>-->
+<!--            <div class="metric-label">Github Stars</div>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="section" style="background-color: var(--neutral-100);">
+      <div class="container">
+        <h2 class="section-title">Our Vision</h2>
+        <p class="section-subtitle">
+          Building software that redefines what’s possible with ModelCopilot
+        </p>
+        
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Model Handling Capabilities</h3>
+        <p style="margin-bottom: 2rem;">
+          Support end-to-end model construction, evolution, and orchestration—enabling traditional, AI-driven, and hybrid approaches to work together as a dynamic ensemble.
+        </p>
+
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Application Capabilities</h3>
+        <p style="margin-bottom: 2rem;">
+          Seamlessly integrate models into workflows for real-time monitoring, anomaly detection, and adaptive decision-making.
+        </p>
+
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Assessment Capabilities</h3>
+        <p style="margin-bottom: 2rem;">
+          Comprehensively evaluate models and integrated functionalities, ensuring that every aspect of the system—from performance to uncertainty—is rigorously appraised for robust and reliable outcomes.
+        </p>
+        
+<!--        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Performance Comparison</h3>-->
+<!--        <table class="data-table">-->
+<!--          <thead>-->
+<!--            <tr>-->
+<!--              <th>Method</th>-->
+<!--              <th>Accuracy (%)</th>-->
+<!--              <th>Training Time</th>-->
+<!--              <th>Hardware Requirements</th>-->
+<!--            </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--            <tr>-->
+<!--              <td>Classical Neural Network</td>-->
+<!--              <td>76.2</td>-->
+<!--              <td>4.5 hours</td>-->
+<!--              <td>High-end GPU</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td>Kernel Methods</td>-->
+<!--              <td>81.7</td>-->
+<!--              <td>2.3 hours</td>-->
+<!--              <td>CPU cluster</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td>Quantum-Classical Hybrid (Ours)</td>-->
+<!--              <td>92.8</td>-->
+<!--              <td>0.8 hours</td>-->
+<!--              <td>QPU + GPU</td>-->
+<!--            </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+
+        <h3 style="font-size: 1.5rem; margin: 2rem 0 1rem;">Why ModelCopilot?</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Sustained Relevance</h4>
+            <p>Models don’t just provide static insights—they grow, adapt, and respond to changing requirements, ensuring long-term value in evolving software ecosystems.</p>
+          </div>
+          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Seamless Integration</h4>
+            <p>From design to continuous refinement, ModelCopilot embeds models into every phase, keeping them actively engaged in decision-making and system evolution.</p>
+          </div>
+          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Cross-Domain Synergy</h4>
+            <p>Unify diverse modeling approaches—domain expertise, data-driven AI, and more—to tackle complex challenges with precision and adaptability.</p>
+          </div>
+          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Embracing Uncertainty</h4>
+            <p>Tackle internal and external uncertainties—including the inherent, shallow, and deep ambiguities of AI—by transforming unknown unknowns into known unknowns and converting known unknowns into actionable insights.
+<!--              , ensuring every aspect of uncertainty contributes to informed and resilient decision-making-->
+            </p>
+          </div>
+        </div>
+      </div>
+        
+<!--        <h3 style="font-size: 1.5rem; margin: 2rem 0 1rem;">Applications</h3>-->
+<!--        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">-->
+<!--          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">-->
+<!--            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Materials Science</h4>-->
+<!--            <p>Predicting properties of novel materials with quantum accuracy, accelerating the discovery of new semiconductors, superconductors, and battery materials.</p>-->
+<!--          </div>-->
+<!--          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">-->
+<!--            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Drug Discovery</h4>-->
+<!--            <p>Modeling molecular interactions at the quantum level to identify promising drug candidates with higher binding affinity and fewer side effects.</p>-->
+<!--          </div>-->
+<!--          <div style="background-color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">-->
+<!--            <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Optimization Problems</h4>-->
+<!--            <p>Solving complex combinatorial optimization problems in logistics, finance, and resource allocation with quantum efficiency.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+    </section>
+
+    <!-- Research Team -->
+<!--    <section class="section">-->
+<!--      <div class="container">-->
+<!--        <h2 class="section-title">Research Team</h2>-->
+<!--        <p class="section-subtitle">-->
+<!--          Meet the key researchers behind our quantum machine learning breakthroughs.-->
+<!--        </p>-->
+<!--        -->
+<!--        <div class="team-section">-->
+<!--          <div style="text-align: center;">-->
+<!--            <img src="https://i.pravatar.cc/300?img=1" alt="Dr. Jane Smith" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">-->
+<!--            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Dr. Jane Smith</h3>-->
+<!--            <p style="color: var(&#45;&#45;accent-color); font-weight: 500; margin-bottom: 0.75rem;">Project Lead</p>-->
+<!--            <p style="margin-bottom: 1rem; font-size: 0.875rem;">Quantum computing expert with over 15 years of experience in developing quantum algorithms.</p>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div style="text-align: center;">-->
+<!--            <img src="https://i.pravatar.cc/300?img=3" alt="Dr. Michael Johnson" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">-->
+<!--            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Dr. Michael Johnson</h3>-->
+<!--            <p style="color: var(&#45;&#45;accent-color); font-weight: 500; margin-bottom: 0.75rem;">Machine Learning Specialist</p>-->
+<!--            <p style="margin-bottom: 1rem; font-size: 0.875rem;">Expert in neural network architectures with a focus on hybrid quantum-classical models.</p>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div style="text-align: center;">-->
+<!--            <img src="https://i.pravatar.cc/300?img=5" alt="Dr. Sarah Chen" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">-->
+<!--            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Dr. Sarah Chen</h3>-->
+<!--            <p style="color: var(&#45;&#45;accent-color); font-weight: 500; margin-bottom: 0.75rem;">Materials Scientist</p>-->
+<!--            <p style="margin-bottom: 1rem; font-size: 0.875rem;">Specializes in applying computational methods to materials discovery and characterization.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+    <!-- Call to Action -->
+<!--    <section class="section" style="background-color: var(&#45;&#45;accent-color); color: white;">-->
+<!--      <div class="container" style="text-align: center;">-->
+<!--        <h2 class="section-title" style="color: white;">Join Our Research Initiative</h2>-->
+<!--        <p style="max-width: 700px; margin: 0 auto 2rem;">-->
+<!--          We're seeking collaborators, research partners, and talented students to join our quantum machine learning initiative. Whether you're interested in theoretical aspects, implementation challenges, or application development, we welcome your participation.-->
+<!--        </p>-->
+<!--        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">-->
+<!--          <a href="#" class="btn" style="background-color: white; color: var(&#45;&#45;accent-color);">Apply for Collaboration</a>-->
+<!--          <a href="#" class="btn" style="background-color: rgba(255,255,255,0.2); color: white; border: 1px solid white;">Contact Research Team</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">WSELab</div>
+            <p class="footer-description">
+              We advance SE with insight-driven design to build software that redefines what’s possible.
+            </p>
+          </div>
+          
+
+          
+          <div>
+            <h3 class="footer-heading">Resources</h3>
+            <ul class="footer-links">
+              <li class="footer-item"><a href="https://github.com/WSE-Lab/WSE-ModelCopilot" class="footer-link">Github (open source in progress)</a></li>
+<!--              <li class="footer-item"><a href="#" class="footer-link">Datasets</a></li>-->
+<!--              <li class="footer-item"><a href="#" class="footer-link">API Documentation</a></li>-->
+<!--              <li class="footer-item"><a href="#" class="footer-link">Research Blog</a></li>-->
+            </ul>
+          </div>
+
+
+          <div>
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-links">
+              <li class="footer-item"><a href="index.html#about" class="footer-link">About</a></li>
+              <li class="footer-item"><a href="index.html#research" class="footer-link">Research</a></li>
+              <!--              <li class="footer-item"><a href="index.html#publications" class="footer-link">Publications</a></li>-->
+              <li class="footer-item"><a href="index.html#team" class="footer-link">Team</a></li>
+              <li class="footer-item"><a href="index.html#contact" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2025 WSE Laboratory. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Simple JavaScript -->
+    <script>
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navbarLinks = document.querySelector('.navbar-links');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        navbarLinks.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll('.navbar-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navbarLinks.classList.remove('active');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,10 +1,1026 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to WSE Lab</title>
-</head>
-<body>
-Coming soon :)
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computational Innovation Laboratory</title>
+    <meta name="description" content="WSE Laboratory - Software Engineering, Elevated" />
+    <meta name="author" content="Man Zhang, and Lovable" />
+
+    <meta property="og:title" content="WSE Laboratory" />
+    <meta property="og:description" content="Software Engineering, Elevated" />
+    <meta property="og:type" content="website" />
+<!--    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />-->
+
+<!--    <meta name="twitter:card" content="summary_large_image" />-->
+<!--    <meta name="twitter:site" content="@lovable_dev" />-->
+<!--    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />-->
+    
+    <!-- Font import -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --accent-color: #1a7cff;
+        --accent-light: #3d8cfa;
+        --neutral-50: #f8f9fa;
+        --neutral-100: #f1f3f5;
+        --neutral-300: #dee2e6;
+        --neutral-800: #343a40;
+        --text-color: #212529;
+        --text-muted: #6c757d;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--neutral-50);
+      }
+
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 2rem;
+        margin: 0 auto;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-light);
+        text-decoration: none;
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-color);
+        border: 1px solid var(--neutral-300);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--neutral-100);
+        text-decoration: none;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--neutral-100);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--text-color);
+      }
+
+      .navbar-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .navbar-link {
+        color: var(--text-color);
+        font-weight: 500;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 6rem 0;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(to bottom right, var(--neutral-50), var(--neutral-100));
+      }
+
+      .hero-pattern {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+        background-size: 40px 40px;
+      }
+
+      .hero-accent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 500px;
+        background-color: rgba(26, 124, 255, 0.05);
+        z-index: -1;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        background-color: rgba(26, 124, 255, 0.1);
+        color: var(--accent-color);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+      }
+
+      .hero-description {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        margin-bottom: 2.5rem;
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+
+      /* Intro Section */
+      .section {
+        padding: 6rem 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .section-subtitle {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        text-align: center;
+        max-width: 42rem;
+        margin: 0 auto 3rem;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--neutral-100);
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+
+      .feature-icon {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        background-color: rgba(26, 124, 255, 0.1);
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      /* Publications Section */
+      .publications-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .publication-card {
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--neutral-100);
+        background-color: white;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .publication-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .publication-authors {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+      }
+
+      .publication-journal {
+        font-size: 0.875rem;
+        font-style: italic;
+        margin-bottom: 0.75rem;
+      }
+
+      .publication-abstract {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+      }
+
+      .publication-link {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* Team Section */
+      .team-members {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-member {
+        text-align: center;
+      }
+
+      .team-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+      }
+
+      .team-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .team-role {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .team-bio {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
+
+      .team-socials {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .social-link {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: var(--neutral-100);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background-color: var(--accent-color);
+        color: white;
+      }
+
+      .chat-wechat-qr {
+        width: 150px;
+        height: 172.1px;
+        object-fit: cover;
+        /*border-radius:20%;*/
+        margin-bottom: 1rem;
+      }
+
+      /* 容器样式 */
+      .wechat-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* 微信图标样式 */
+      .wechat-icon {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: var(--neutral-100);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+      }
+
+      /* 二维码图片样式 */
+      .wechat-qr-photo {
+        width: 150px;
+        height: 172.1px;
+        object-fit: cover;
+        position: absolute;
+        top: 50px; /* 二维码距离图标的位置 */
+        left: 50%;
+        transform: translateX(-30%); /* 左边距离 */
+        display: none; /* 默认隐藏 */
+        border: 1px solid #ccc; /* 可选：添加边框 */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 可选：添加阴影 */
+      }
+
+      /* 鼠标悬停时显示二维码 */
+      .wechat-container:hover .wechat-qr-photo {
+        display: block;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--neutral-100);
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .footer-description {
+        margin-bottom: 1.5rem;
+        color: var(--text-muted);
+      }
+
+      .footer-heading {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-links {
+        list-style-type: none;
+      }
+
+      .footer-item {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-link {
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--accent-color);
+      }
+
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--neutral-300);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-description {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .navbar-links {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .navbar-links.active {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: white;
+          padding: 1rem;
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+          border-top: 1px solid var(--neutral-100);
+        }
+      }
+
+      /* News Banner */
+      /*.news-banner {*/
+      /*  background-color: rgba(255, 255, 255, 0.9); !* 与 navbar 背景颜色一致 *!*/
+      /*  backdrop-filter: blur(10px); !* 与 navbar 模糊效果一致 *!*/
+      /*  -webkit-backdrop-filter: blur(10px); !* 兼容 Safari *!*/
+      /*  color: var(--accent-color);*/
+      /*  padding: 0.75rem 1rem;*/
+      /*  text-align: center;*/
+      /*  font-weight: 500;*/
+      /*  position: fixed; !* 固定在顶部 *!*/
+      /*  top: 0; !* 固定在顶部 *!*/
+      /*  left: 0;*/
+      /*  right: 0;*/
+      /*  z-index: 1001; !* 确保在 navbar 之上 *!*/
+      /*  border-bottom: 1px solid var(--neutral-100); !* 可选：添加与 navbar 一致的底部边框 *!*/
+      /*}*/
+      /*.news-banner-content {*/
+      /*  max-width: 1200px;*/
+      /*  margin: 0 auto;*/
+      /*  display: flex;*/
+      /*  align-items: center;*/
+      /*  justify-content: center;*/
+      /*}*/
+
+      /*.news-label {*/
+      /*  font-weight: 700;*/
+      /*  margin-right: 0.5rem;*/
+      /*}*/
+
+      /*.news-banner a {*/
+      /*  text-decoration: underline;*/
+      /*  margin-left: 0.5rem;*/
+      /*}*/
+
+      /*.close-banner {*/
+      /*  position: absolute;*/
+      /*  right: 1rem;*/
+      /*  top: 50%;*/
+      /*  transform: translateY(-50%);*/
+      /*  background: none;*/
+      /*  border: none;*/
+      /*  cursor: pointer;*/
+      /*  color: var(--accent-color);*/
+      /*  font-size: 1.25rem;*/
+      /*  display: flex;*/
+      /*  align-items: center;*/
+      /*  justify-content: center;*/
+      /*  padding: 0.25rem;*/
+      /*}*/
+
+      /*.close-banner:hover {*/
+      /*  opacity: 0.8;*/
+      /*}*/
+
+      /*!* Adjust other components for the banner *!*/
+      /*body.has-banner .navbar {*/
+      /*  top: 45px; !* Height of the banner *!*/
+      /*}*/
+
+      /*body.has-banner .hero {*/
+      /*  padding-top: calc(6rem + 45px); !* Original padding + banner height *!*/
+      /*}*/
+    </style>
+  </head>
+  <body class="has-banner">
+    <!-- News Banner -->
+<!--    <div class="news-banner" id="news-banner">-->
+<!--      <div class="news-banner-content">-->
+<!--        <span class="news-label">🎉 News:</span>-->
+<!--        Our Quantum Machine Learning research has been accepted for publication in Nature!-->
+<!--        <a href="#publications">View Publications</a>-->
+<!--      </div>-->
+<!--      <button class="close-banner" aria-label="Close" id="close-banner">✕</button>-->
+<!--    </div>-->
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container navbar-container">
+        <a href="#" class="navbar-logo">WSELab</a>
+        <nav class="navbar-links">
+          <a href="#about" class="navbar-link">About</a>
+          <a href="#research" class="navbar-link">Research</a>
+          <a href="model-copilot.html" class="navbar-link">ModelCopilot</a>
+<!--          <a href="#publications" class="navbar-link">Publications</a>-->
+          <a href="#team" class="navbar-link">Team</a>
+          <a href="#contact" class="navbar-link">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-accent"></div>
+      
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">WSE Laboratory</div>
+          <h1 class="hero-title">
+            Software Engineering <br> Elevated
+          </h1>
+          <p class="hero-description">
+            We advance SE with insight-driven design to build software that redefines what’s possible.
+          </p>
+          <div class="hero-buttons">
+            <a href="#about" class="btn btn-primary">Explore Our Work</a>
+<!--            <a href="#publications" class="btn btn-secondary">View Publications</a>-->
+          </div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 5L12 19M12 19L19 12M12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">About Our Lab</h2>
+        <p class="section-subtitle">
+          <b>WSELab</b> pioneers advancements in classical and quantum software engineering by integrating cutting-edge techniques—including <b>AI</b>,
+          <b>large language models (LLMs)</b>, and <b>evolutionary computing</b>—across every stage of software development.
+<!--          From requirements analysis and system modeling to rigorous testing and continuous evolution,-->
+<!--          while leveraging methodologies, standards and tools from empirical, uncertainty-aware, and search-based software engineering.-->
+<!--          The Computational Innovation Laboratory is dedicated to solving complex scientific problems through advanced computational techniques.-->
+        </p>
+        
+        <div class="features">
+          <div class="feature-card">
+<!--            <div class="feature-icon">UASE</div>-->
+            <h3 class="feature-title">Uncertainty-aware SE</h3>
+            <p>Integrating uncertainty modeling, quantification and mitigation across the software lifecycle—modeling, testing, and evolution—to enable resilient software systems that thrive in dynamic environments.</p>
+          </div>
+          
+          <div class="feature-card">
+<!--            <div class="feature-icon">Q-SE</div>-->
+            <h3 class="feature-title">Quantum SE</h3>
+            <p>Developing principles, methodologies, and tools to design, implement, test, and optimize software for quantum and hybrid quantum-classical systems.</p>
+          </div>
+          
+          <div class="feature-card">
+<!--            <div class="feature-icon">MBSE</div>-->
+            <h3 class="feature-title">Model-based SE</h3>
+            <p>Utilizing precise digital models to enhance efficiency, consistency, and automation in software system development.</p>
+          </div>
+        </div>
+        <br>
+        <div class="features">
+          <div class="feature-card">
+<!--            <div class="feature-icon">U-SE</div>-->
+            <h3 class="feature-title">Intelligent Software Testing</h3>
+            <p>Harnessing advanced AI techniques to streamline testing processes, ensuring robust quality and adaptive performance across diverse software landscapes.</p>
+          </div>
+
+          <div class="feature-card">
+<!--            <div class="feature-icon">U-SE</div>-->
+            <h3 class="feature-title">Optimization in SE</h3>
+            <p>Applying both classical and quantum optimization techniques to enhance software performance, efficiency, and decision-making in complex engineering problems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="section" id="research">
+      <div class="container">
+        <h2 class="section-title">Our Research</h2>
+        <p class="section-subtitle">
+          Explore our key research areas where we're making significant contributions.
+        </p>
+        
+        <div class="features">
+          <div class="feature-card">
+            <h3 class="feature-title">ModelCopilot</h3>
+            <p>Transforming models—spanning prior knowledge systems, machine learning frameworks, and more—into dynamic, context-aware collaborators.</p>
+            <a href="model-copilot.html" class="btn btn-primary" style="margin-top: 1rem;">Learn More</a>
+          </div>
+          
+          <div class="feature-card">
+            <h3 class="feature-title">Uncertainty-wise methodologies for CPS</h3>
+            <p>Developing a series of novel methodologies for understanding, specifying, modeling, evolving and testing uncertainties of Cyber-Physical Systems (CPSs).</p>
+          </div>
+<!--          -->
+<!--          <div class="feature-card">-->
+<!--            <h3 class="feature-title">AI for Scientific Discovery</h3>-->
+<!--            <p>Creating specialized AI systems that can help scientists formulate hypotheses and accelerate the discovery process.</p>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+<!--    <section class="section" id="publications">-->
+<!--      <div class="container">-->
+<!--        <h2 class="section-title">Publications</h2>-->
+<!--        <p class="section-subtitle">-->
+<!--          Recent peer-reviewed publications from our laboratory.-->
+<!--        </p>-->
+<!--        -->
+<!--        <div class="publications-list">-->
+<!--          <div class="publication-card">-->
+<!--            <h3 class="publication-title">Quantum Neural Networks for Materials Property Prediction</h3>-->
+<!--            <p class="publication-authors">Smith J., Johnson A., Lee S.</p>-->
+<!--            <p class="publication-journal">Nature Quantum Information, 2023</p>-->
+<!--            <p class="publication-abstract">We present a novel quantum neural network architecture that significantly improves the accuracy of materials property predictions compared to classical approaches.</p>-->
+<!--            <a href="#" class="publication-link">Read Paper →</a>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="publication-card">-->
+<!--            <h3 class="publication-title">Accelerating Drug Discovery with Graph Neural Networks</h3>-->
+<!--            <p class="publication-authors">Williams R., Garcia M., Chen T.</p>-->
+<!--            <p class="publication-journal">Journal of Chemical Information and Modeling, 2022</p>-->
+<!--            <p class="publication-abstract">A new approach to molecular representation learning that improves prediction of drug-like properties and binding affinities.</p>-->
+<!--            <a href="#" class="publication-link">Read Paper →</a>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="publication-card">-->
+<!--            <h3 class="publication-title">Self-Supervised Learning for Scientific Data Analysis</h3>-->
+<!--            <p class="publication-authors">Taylor K., Kumar P., Zhang L.</p>-->
+<!--            <p class="publication-journal">Science Advances, 2023</p>-->
+<!--            <p class="publication-abstract">We demonstrate how self-supervised learning can extract meaningful representations from unlabeled scientific datasets across multiple domains.</p>-->
+<!--            <a href="#" class="publication-link">Read Paper →</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+    <!-- Team Section -->
+    <section class="section" id="team">
+      <div class="container">
+        <h2 class="section-title">Our Team</h2>
+        <p class="section-subtitle">
+          Meet the researchers and students who make our work possible.
+        </p>
+        
+        <div class="team-members">
+          <div class="team-member">
+            <img src="imgs/teachers/TaoYue.jpeg" alt="Dr. Tao Yue" class="team-photo">
+            <h3 class="team-name">Dr. Tao Yue</h3>
+            <p class="team-role">Full Professor</p>
+<!--            <p class="team-bio">Quantum computing expert with over 15 years of experience in developing algorithms for scientific applications.</p>-->
+            <p class="team-bio">Builts years of experience in SE research, tackling complex challenges and developing practical solutions.</p>
+            <div class="team-socials">
+              <a href="https://yue-tao.github.io/" class="social-link">🔗</a>
+              <a href="mailto:yuetao@buaa.edu.cn,taoyue@gmail.com" class="social-link">📧</a>
+            </div>
+          </div>
+          
+          <div class="team-member">
+            <img src="imgs/teachers/man.png" alt="Dr. Man Zhang" class="team-photo">
+            <h3 class="team-name">Dr. Man Zhang</h3>
+            <p class="team-role">Associate Professor</p>
+            <p class="team-bio">Specializes in software testing for complex software/system with a focus on AI-based techniques.</p>
+            <div class="team-socials">
+              <a href="https://man-zhang.github.io/" class="social-link">🔗</a>
+              <a href="mailto:manzhang@buaa.edu.cn,man.mzhang@gmail.com" class="social-link">📧</a>
+            </div>
+          </div>
+          
+<!--          <div class="team-member">-->
+<!--            <img src="https://i.pravatar.cc/300?img=5" alt="Dr. Sarah Chen" class="team-photo">-->
+<!--            <h3 class="team-name">Dr. Sarah Chen</h3>-->
+<!--            <p class="team-role">Research Scientist</p>-->
+<!--            <p class="team-bio">Works on developing AI systems for accelerating drug discovery and protein engineering.</p>-->
+<!--            <div class="team-socials">-->
+<!--              <a href="#" class="social-link">🔗</a>-->
+<!--              <a href="#" class="social-link">📧</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="team-member">-->
+<!--            <img src="https://i.pravatar.cc/300?img=7" alt="Dr. Robert Taylor" class="team-photo">-->
+<!--            <h3 class="team-name">Dr. Robert Taylor</h3>-->
+<!--            <p class="team-role">Postdoctoral Researcher</p>-->
+<!--            <p class="team-bio">Researching quantum algorithms for solving complex optimization problems in science.</p>-->
+<!--            <div class="team-socials">-->
+<!--              <a href="#" class="social-link">🔗</a>-->
+<!--              <a href="#" class="social-link">📧</a>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">
+          Interested in collaborating or learning more about our research? Get in touch with us.
+        </p>
+        
+        <div class="features">
+<!--          <div class="feature-card">-->
+<!--            <h3 class="feature-title">Email</h3>-->
+<!--            <p>yuetao@buaa.edu.cn</p>-->
+<!--            <p>manzhang@buaa.edu.cn</p>-->
+<!--          </div>-->
+          
+          <div class="feature-card">
+            <h3 class="feature-title">Address</h3>
+            <p>37 Xueyuan Road<br>Haidian District<br>Beijing, P.R. China, 100191</p>
+
+
+            <div class="team-socials" style="justify-content: flex-start; margin-top: 1rem;">
+              <h3 class="feature-title">Email</h3>
+              <a href="mailto:yuetao@buaa.edu.cn,manzhang@buaa.edu.cn" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-title">Chat with us</h3>
+
+            <img src="imgs/wechat_qr_en.png" class="chat-wechat-qr" alt="WeChat QR Code">
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-title">Follow Us</h3>
+            <div class="team-socials" style="justify-content: flex-start; margin-top: 1rem;">
+              <a href="https://github.com/WSE-Lab" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+              </a>
+              <div class="wechat-container">
+                <img src="imgs/wechat_qr_en.png" alt="WeChat QR Code" class="wechat-qr-photo">
+                <a href="#" class="wechat-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#09b83e">
+                    <path fill="currentColor" d="M9.5 4C5.36 4 2 6.69 2 10c0 1.89 1.08 3.56 2.78 4.66L4 17l2.5-1.5c.89.31 1.87.5 2.91.5A5.22 5.22 0 0 1 9 14c0-3.31 3.13-6 7-6c.19 0 .38 0 .56.03C15.54 5.69 12.78 4 9.5 4m-3 2.5a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1m5 0a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1M16 9c-3.31 0-6 2.24-6 5s2.69 5 6 5c.67 0 1.31-.08 1.91-.25L20 20l-.62-1.87C20.95 17.22 22 15.71 22 14c0-2.76-2.69-5-6-5m-2 2.5a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1"></path>
+                  </svg>
+                </a>
+              </div>
+<!--              <a href="#" class="social-link">🐦</a>-->
+<!--              <a href="#" class="social-link">📱</a>-->
+<!--              <a href="#" class="social-link">📷</a>-->
+<!--              <a href="#" class="social-link">👨‍💼</a>-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">WSELab</div>
+            <p class="footer-description">
+              We advance SE with insight-driven design to build software that redefines what’s possible.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-links">
+              <li class="footer-item"><a href="#about" class="footer-link">About</a></li>
+              <li class="footer-item"><a href="#research" class="footer-link">Research</a></li>
+              <li class="footer-item"><a href="#publications" class="footer-link">Publications</a></li>
+              <li class="footer-item"><a href="#team" class="footer-link">Team</a></li>
+            </ul>
+          </div>
+
+<!--          TODO-->
+<!--          <div>-->
+<!--            <h3 class="footer-heading">Resources</h3>-->
+<!--            <ul class="footer-links">-->
+<!--              <li class="footer-item"><a href="#" class="footer-link">Open Source Projects</a></li>-->
+<!--              <li class="footer-item"><a href="#" class="footer-link">Datasets</a></li>-->
+<!--              <li class="footer-item"><a href="#" class="footer-link">API Documentation</a></li>-->
+<!--              <li class="footer-item"><a href="#" class="footer-link">Research Blog</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2025 WSE Laboratory. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Simple JavaScript -->
+    <script>
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navbarLinks = document.querySelector('.navbar-links');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        navbarLinks.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const navLinks = document.querySelectorAll('.navbar-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navbarLinks.classList.remove('active');
+        });
+      });
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === "#") return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Simple animation when elements come into view
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.feature-card, .publication-card, .team-member');
+        
+        elements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      };
+      
+      // Set initial styles for animation
+      document.querySelectorAll('.feature-card, .publication-card, .team-member').forEach(element => {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(20px)";
+        element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      });
+      
+      // Run animations on load and scroll
+      window.addEventListener('load', animateOnScroll);
+      window.addEventListener('scroll', animateOnScroll);
+      
+      // // Banner handling
+      // Optional: Add JavaScript to handle closing the banner
+      document.querySelector('.close-banner').addEventListener('click', function() {
+        document.querySelector('.news-banner').style.display = 'none';
+        document.body.classList.remove('has-banner');
+        document.querySelector('.navbar').style.top = '0'; // 关闭 banner 后，navbar 回到顶部
+        document.querySelector('.hero').style.paddingTop = '6rem'; // 关闭 banner 后，hero 的 padding 恢复
+      });
+    </script>
+  </body>
 </html>
