@@ -157,7 +157,7 @@
     .page-description {
       font-size: 1.25rem;
       color: var(--text-muted);
-      max-width: 750px;
+      max-width: 850px;
       margin: 0 auto 2rem;
       text-align: center;
     }
@@ -185,7 +185,7 @@
     .section-subtitle-overview {
       font-size: 1.25rem;
       color: var(--text-muted);
-      max-width: 52rem;
+      max-width: 55rem;
       margin: 0 auto 3rem;
     }
 
@@ -208,6 +208,7 @@
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       margin-bottom: 2rem;
+      position: relative;
     }
 
     .research-card-image {
@@ -220,6 +221,20 @@
       justify-content: center;
       color: var(--accent-color);
       font-size: 3rem;
+      position: relative;
+    }
+
+    .video-protection-message {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      z-index: 11;
+      display: none;
     }
 
     .research-card-content {
@@ -337,14 +352,6 @@
       margin: 1rem 0;
     }
 
-    .note {
-      background-color: #e6f7ff;
-      border-left: 4px solid var(--accent-color);
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 0 0.5rem 0.5rem 0;
-    }
-
     /* Back link */
     .back-link {
       display: inline-flex;
@@ -422,6 +429,27 @@
       height: 1.5rem;
     }
 
+    .download-warning h3 {
+      color: #d9534f;
+      margin-bottom: 1rem;
+    }
+
+    .download-warning p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1500;
+      display: none;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .page-title {
@@ -457,6 +485,7 @@
         height: auto;
         min-height: 300px;
       }
+
     }
   </style>
 </head>
@@ -470,11 +499,9 @@
       <a href="index.html" class="navbar-logo"> at WSELab</a>
     </div>
 
-
     <nav class="navbar-links">
       <a href="index.html#about" class="navbar-link">About</a>
       <a href="index.html#research" class="navbar-link">Research</a>
-      <!--          <a href="index.html#publications" class="navbar-link">Publications</a>-->
       <a href="index.html#team" class="navbar-link">Team</a>
       <a href="index.html#contact" class="navbar-link">Contact</a>
     </nav>
@@ -483,6 +510,7 @@
     </button>
   </div>
 </header>
+
 
 <!-- Page Header -->
 <section class="page-header">
@@ -542,9 +570,9 @@
     </div>
 
     <div class="research-card">
-
       <div class="research-card-image">
-        <video width="100%" height="100%" controls poster="https://via.placeholder.com/823x500?text=LiveTCM+Demo">
+
+        <video id="protectedVideo" width="100%" height="100%" controls poster="https://via.placeholder.com/823x500?text=LiveTCM+Demo">
           <source src="imgs/liveTCM-demo.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -560,7 +588,6 @@
         </p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -645,74 +672,100 @@
 
     <div class="footer-bottom">
       <p>&copy; 2025 WSE Laboratory. All rights reserved.</p>
+      <p>All research materials including videos are protected intellectual property.</p>
     </div>
   </div>
 </footer>
 
-<!-- Simple JavaScript -->
+<!-- JavaScript -->
 <script>
-  // Navbar scroll effect
-  const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-
-  // Mobile menu toggle
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const navbarLinks = document.querySelector('.navbar-links');
-
-  mobileMenuBtn.addEventListener('click', () => {
-    navbarLinks.classList.toggle('active');
-  });
-
-  // Close mobile menu when clicking on a link
-  const navLinks = document.querySelectorAll('.navbar-link');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navbarLinks.classList.remove('active');
-    });
-  });
-
-  function scrollToReference(refId) {
-    const element = document.getElementById(refId);
-    if (element) {
-      const offset = 100; // 导航栏高度偏移
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      });
-    }
-  }
-
-  document.querySelectorAll('.sup-reference').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const refId = this.getAttribute('href').substring(1); // 获取 # 后面的 id
-      scrollToReference(refId);
-
-      history.pushState(null, null, '#' + refId);
-    });
-  });
-
+  // 视频保护功能
   document.addEventListener('DOMContentLoaded', function() {
-    // 如果URL中有hash，阻止默认滚动行为
-    if(window.location.hash) {
-      // 移除URL中的hash
-      history.replaceState(null, null, ' ');
+    const video = document.getElementById('protectedVideo');
+    const protector = document.querySelector('.video-protector');
+    const warningMessage = document.querySelector('.video-protection-message');
+    const downloadWarning = document.getElementById('downloadWarning');
+    const overlay = document.getElementById('overlay');
+    const closeWarning = document.getElementById('closeWarning');
 
-      // 添加延迟确保页面渲染完成
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target === video || e.target === protector) {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+    });
+
+    // 禁用快捷键
+    document.addEventListener('keydown', function(e) {
+      // Ctrl+S or Command+S
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+
+      // 打印屏幕
+      if (e.key === 'PrintScreen') {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+    });
+
+    // 阻止视频元素获取焦点
+    video.addEventListener('focus', function() {
+      this.blur();
+    });
+
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navbarLinks = document.querySelector('.navbar-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navbarLinks.classList.toggle('active');
+    });
+
+    const navLinks = document.querySelectorAll('.navbar-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbarLinks.classList.remove('active');
+      });
+    });
+
+    function scrollToReference(refId) {
+      const element = document.getElementById(refId);
+      if (element) {
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    document.querySelectorAll('.sup-reference').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const refId = this.getAttribute('href').substring(1);
+        scrollToReference(refId);
+        history.pushState(null, null, '#' + refId);
+      });
+    });
+
+    if(window.location.hash) {
+      history.replaceState(null, null, ' ');
       setTimeout(function() {
-        // 获取目标元素
         const targetElement = document.getElementById(window.location.hash.substring(1));
         if(targetElement) {
-          // 平滑滚动到目标元素
           targetElement.scrollIntoView({ behavior: 'smooth' });
-          // 恢复URL的hash以便用户复制链接
           history.replaceState(null, null, window.location.href.split('#')[0] + window.location.hash);
         }
       }, 300);
