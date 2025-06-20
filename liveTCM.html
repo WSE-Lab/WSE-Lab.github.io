@@ -424,10 +424,11 @@
   <div class="container">
     <h1 class="page-title">Adaptive Model-based Testing <br> of Autonomous Driving Systems</h1>
     <p class="page-description">
-        Testing Autonomous Driving Systems (ADS) is critical to ensure their safety and reliability in dynamic and unpredictable real-world driving environments. 
-        In the literature, many scenario-based ADS testing solutions have been proposed to generate safety-critical driving scenarios. 
-        LiveTCM is a web-based model editor for specifying and executing Test Case Specifications (TCS). 
-        LiveTCM also has an extensible engine for enabling generation of TCS via real-time communication with ADS in simulators.    
+      Testing Autonomous Driving Systems (ADS) is essential to ensure their safety and reliability in dynamic and unpredictable real-world environments.
+      Model-Based Testing (MBT) has proven effective for complex software systems, including Cyber-Physical Systems and the Internet of Things.
+      However, for intelligent systems like ADS, much of their behavior can only be observed during operation.
+      This calls for adaptive MBT approaches, where the test model—the foundation for generating test cases—evolves through continuous interaction with the system under test (SUT) during test execution.
+      To address this need, we propose LiveTCM, a framework that adaptively generates test cases by interacting with ADS within simulation environments.
     </p>
     <a href="index.html" class="back-link">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -441,11 +442,13 @@
 <!-- Overview Section -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Research Overview</h2>
+    <h2 class="section-title"> Overview</h2>
     <p class="section-subtitle">
-      Dynamically Generating Critical Scenarios via Natural Language with Configurable Strategies to Uncover Decision Flaws in Autonomous Driving Systems.
-    </p>
-
+      LiveTCM builds upon our previous work, RTCM [1], a methodology for statically generating test cases from TCS, which serve as test models in the context of MBT.
+      RTCM is supported by a metamodel that formalizes key testing concepts—such as test setup, test sequence, and test oracle—as event flows derived from use cases. It enables the transformation of TCS written in natural language into structured instances of the metamodel, which can then be converted into executable test cases.
+      To streamline this transformation process, RTCM includes a tabular template primarily for documenting event flows, along with a set of well-defined keywords—such as VALIDATES THAT, INVOKE API, VERIFIES THAT, WARNING, and ERROR—to guide the accurate generation of test cases.
+      However, RTCM and similar MBT approaches fall short in testing ADS, as they rely on static test generation and do not sufficiently account for the evolving nature of these systems and their operational environments. In practice, understanding the behavior of such systems accumulates progressively through ongoing interaction under diverse and unpredictable scenarios.
+      This highlights the need for a new methodology capable of generating and executing TCS dynamically, through continuous interaction with the system and its environment. Furthermore, the resulting TCS should be treated as valuable artifacts that contribute to a deeper understanding of both the system and its operational context. </p>
     <div class="research-card">
 
       <div class="research-card-image">
