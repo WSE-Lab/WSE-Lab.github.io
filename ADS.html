@@ -157,8 +157,9 @@
     .page-description {
       font-size: 1.25rem;
       color: var(--text-muted);
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto 2rem;
+      text-align: center;
     }
 
     /* Research content */
@@ -179,6 +180,26 @@
       text-align: center;
       max-width: 42rem;
       margin: 0 auto 3rem;
+    }
+
+    .section-subtitle-overview {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 52rem;
+      margin: 0 auto 3rem;
+    }
+
+    .overview-container {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      text-align: left;
+    }
+
+    .overview-container p {
+      width: 100%;
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+      hyphens: auto;
     }
 
     .research-card {
@@ -265,6 +286,45 @@
 
     .step-content {
       margin-bottom: 1.5rem;
+    }
+
+    .sup-reference {
+      position: relative;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+
+    .reference-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--neutral-300);
+      scroll-margin-top: 100px;
+    }
+
+    .reference-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .reference-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .reference-authors {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .reference-details {
+      margin-bottom: 0.5rem;
+    }
+
+    .reference-doi {
+      color: var(--accent-color);
     }
 
     .code-block {
@@ -392,6 +452,11 @@
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         border-top: 1px solid var(--neutral-100);
       }
+
+      .research-card-image {
+        height: auto;
+        min-height: 300px;
+      }
     }
   </style>
 </head>
@@ -443,31 +508,56 @@
 <section class="section">
   <div class="container">
     <h2 class="section-title"> Overview</h2>
-    <p class="section-subtitle">
-      LiveTCM builds upon our previous work, RTCM [1], a methodology for statically generating test cases from TCS. 
-      RTCM is supported by a metamodel that formalizes key testing concepts such as test setup, test sequence, and test oracle, and enables the transformation of TCS in natural language into structured instances of the metamodel, which can then be converted into executable test cases.
-      To streamline this transformation process, RTCM includes a tabular template primarily for documenting event flows, along with a set of well-defined keywords such as VALIDATES THAT and INVOKE API to guide the accurate generation of test cases.
-      However, RTCM and similar MBT approaches fall short in testing ADS, as they rely on static test generation and do not sufficiently account for the evolving nature of these systems and their operational environments. 
-      This highlights the need for a new methodology capable of generating and executing TCS dynamically, through continuous interaction with the system and its environment. 
-      Furthermore, the resulting TCS should be treated as valuable artifacts that contribute to a deeper understanding of both the system and its operational context. </p>
+    <div class="overview-container">
+      <p class="section-subtitle-overview">
+        LiveTCM builds upon our previous work,
+        RTCM<a href="#ref1" class="sup-reference"><sup>[1]</sup></a>,
+        a methodology for statically generating test cases from test case specifications (TCS).
+      </p>
+
+      <p class="section-subtitle-overview">
+        RTCM is supported by a metamodel that formalizes key testing concepts such as test setup,
+        test sequence, and test oracle, and enables the transformation of TCS in natural language
+        into structured instances of the metamodel, which can then be converted into executable test cases.
+      </p>
+
+      <p class="section-subtitle-overview">
+        To streamline this transformation process, RTCM includes a tabular template primarily for
+        documenting event flows, along with a set of well-defined keywords such as VALIDATES THAT
+        and INVOKE API to guide the accurate generation of test cases.
+      </p>
+
+      <p class="section-subtitle-overview">
+        However, RTCM and similar MBT approaches fall short in testing ADS, as they rely on static
+        test generation and do not sufficiently account for the evolving nature of these systems and
+        their operational environments.
+      </p>
+
+      <p class="section-subtitle-overview">
+        This highlights the need for a new methodology capable of generating and executing TCS dynamically,
+        through continuous interaction with the system and its environment. Furthermore, the resulting TCS
+        should be treated as valuable artifacts that contribute to a deeper understanding of both the system
+        and its operational context.
+      </p>
+    </div>
+
     <div class="research-card">
 
       <div class="research-card-image">
-        <!--            <span>demo video</span>-->
-        <video width="823" height="500" controls>
+        <video width="100%" height="100%" controls poster="https://via.placeholder.com/823x500?text=LiveTCM+Demo">
           <source src="imgs/liveTCM-demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
         </video>
-
       </div>
       <div class="research-card-content">
         <h3 class="research-card-title">LiveTCM</h3>
         <p class="research-card-text">
-          The LiveTCM Editor serves as the primary interface for users to interact with the LiveTCM framework. 
+          The LiveTCM Editor serves as the primary interface for users to interact with the LiveTCM framework.
           It provides a dedicated pane for specifying and visualizing key components of a TCS, including the precondition (test data specification), test setup, and test steps, which are organized as structured flows of events.
         </p>
         <p class="research-card-text">
-         Test Case Specification Generator of LiveTCM can automatically and dynamically generate, execute, and verify TCS together with various test scenario generation strategies such as DeepCollision [2]. 
-         </p>
+          Test Case Specification Generator of LiveTCM can automatically and dynamically generate, execute, and verify TCS together with various test scenario generation strategies such as DeepCollision<a href="#ref2" class="sup-reference"><sup>[2]</sup></a>.
+        </p>
       </div>
     </div>
 
@@ -477,9 +567,9 @@
 <!-- Publication Section -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Research Publication</h2>
+    <h2 class="section-title">Research Publications</h2>
     <p class="section-subtitle">
-      Learn more about our research approach
+      Explore our foundational research and related publications
     </p>
 
     <div class="setup-steps">
@@ -492,6 +582,32 @@
       <a href="https://doi.org/10.1109/MODELS50736.2021.00019" class="btn btn-primary" style="margin-top: 1rem;">
         View Publication
       </a>
+    </div>
+
+    <div class="setup-steps" style="margin-top: 2rem;">
+      <h3 class="step-title">Related Publications</h3>
+
+      <div class="reference-item" id="ref1">
+        <div class="reference-title">[1] RTCM: a natural language based, automated, and practical test case generation framework</div>
+        <div class="reference-authors">Tao Yue, Shaukat Ali, and Man Zhang</div>
+        <div class="reference-details">
+          Proceedings of the 2015 International Symposium on Software Testing and Analysis (ISSTA 2015). Baltimore, MD, USA. Association for Computing Machinery, New York, NY, USA, 397–408
+        </div>
+        <a href="https://doi.org/10.1145/2771783.2771799" class="btn btn-primary" style="margin-top: 1rem;">
+          View Publication
+        </a>
+      </div>
+
+      <div class="reference-item" id="ref2">
+        <div class="reference-title">[2] Learning Configurations of Operating Environment of Autonomous Vehicles to Maximize their Collisions</div>
+        <div class="reference-authors">Chengjie Lu, Yize Shi, Huihui Zhang, Man Zhang, Tiexin Wang, Tao Yue, and Shaukat Ali</div>
+        <div class="reference-details">
+          IEEE Transactions on Software Engineering 49, 1 (2023), 384–402
+        </div>
+        <a href="https://doi.org/10.1109/TSE.2022.3150788" class="btn btn-primary" style="margin-top: 1rem;">
+          View Publication
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -559,6 +675,48 @@
     link.addEventListener('click', () => {
       navbarLinks.classList.remove('active');
     });
+  });
+
+  function scrollToReference(refId) {
+    const element = document.getElementById(refId);
+    if (element) {
+      const offset = 100; // 导航栏高度偏移
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  document.querySelectorAll('.sup-reference').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const refId = this.getAttribute('href').substring(1); // 获取 # 后面的 id
+      scrollToReference(refId);
+
+      history.pushState(null, null, '#' + refId);
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // 如果URL中有hash，阻止默认滚动行为
+    if(window.location.hash) {
+      // 移除URL中的hash
+      history.replaceState(null, null, ' ');
+
+      // 添加延迟确保页面渲染完成
+      setTimeout(function() {
+        // 获取目标元素
+        const targetElement = document.getElementById(window.location.hash.substring(1));
+        if(targetElement) {
+          // 平滑滚动到目标元素
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          // 恢复URL的hash以便用户复制链接
+          history.replaceState(null, null, window.location.href.split('#')[0] + window.location.hash);
+        }
+      }, 300);
+    }
   });
 </script>
 </body>
