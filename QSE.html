@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IsingBench - WSE Laboratory</title>
+  <meta name="description" content="IsingBench at WSE Laboratory" />
+  <meta name="author" content="Man Zhang and Lovable" />
+
+  <!-- Font import -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!-- Custom CSS -->
+  <style>
+    :root {
+      --accent-color: #1a7cff;
+      --accent-light: #3d8cfa;
+      --neutral-50: #f8f9fa;
+      --neutral-100: #f1f3f5;
+      --neutral-300: #dee2e6;
+      --neutral-800: #343a40;
+      --text-color: #212529;
+      --text-muted: #6c757d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--neutral-50);
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 2rem;
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-color);
+      border: 1px solid var(--neutral-300);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--neutral-100);
+      text-decoration: none;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--neutral-100);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-logo-container{
+      justify-content: flex-start;
+    }
+
+    .navbar-logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-color);
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .navbar-link {
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Page header */
+    .page-header {
+      padding: 8rem 0 4rem;
+      background: linear-gradient(to bottom right, rgba(26, 124, 255, 0.1), rgba(26, 124, 255, 0.05));
+      text-align: center;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .page-description {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 850px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    /* Research content */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 42rem;
+      margin: 0 auto 3rem;
+    }
+
+    .section-subtitle-overview {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 55rem;
+      margin: 0 auto 3rem;
+    }
+
+    .overview-container {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      text-align: left;
+    }
+
+    .overview-container p {
+      width: 100%;
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+      hyphens: auto;
+    }
+
+    .research-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .research-card-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      background-color: #f0f5ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+      font-size: 3rem;
+      position: relative;
+    }
+
+    .video-protection-message {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      z-index: 11;
+      display: none;
+    }
+
+    .research-card-content {
+      padding: 2rem;
+    }
+
+    .research-card-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .research-card-text {
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .feature-image {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .feature-description {
+      margin-bottom: 1rem;
+    }
+
+    .setup-steps {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin: 2rem 0;
+    }
+
+    .step-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    .step-content {
+      margin-bottom: 1.5rem;
+    }
+
+    .sup-reference {
+      position: relative;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+
+    .reference-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--neutral-300);
+      scroll-margin-top: 100px;
+    }
+
+    .reference-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .reference-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .reference-authors {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .reference-details {
+      margin-bottom: 0.5rem;
+    }
+
+    .reference-doi {
+      color: var(--accent-color);
+    }
+
+    .code-block {
+      background-color: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: monospace;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .back-link svg {
+      margin-right: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--neutral-100);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .footer-description {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .footer-heading {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      list-style-type: none;
+    }
+
+    .footer-item {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--neutral-300);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .modelcopilot-icon {
+      width: 5.16rem;
+      height: 1.5rem;
+    }
+
+    .download-warning h3 {
+      color: #d9534f;
+      margin-bottom: 1rem;
+    }
+
+    .download-warning p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1500;
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .navbar-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 1rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--neutral-100);
+      }
+
+      .research-card-image {
+        height: auto;
+        min-height: 300px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<header class="navbar">
+  <div class="container navbar-container">
+
+    <div class="navbar-logo-container">
+      <img src="imgs/modelcopilot-icon.png" class="modelcopilot-icon" alt="ModelCopilot Icon">
+      <a href="index.html" class="navbar-logo"> at WSELab</a>
+    </div>
+
+    <nav class="navbar-links">
+      <a href="index.html#about" class="navbar-link">About</a>
+      <a href="index.html#research" class="navbar-link">Research</a>
+      <a href="index.html#team" class="navbar-link">Team</a>
+      <a href="index.html#contact" class="navbar-link">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn">
+      ☰
+    </button>
+  </div>
+</header>
+
+
+<!-- Page Header -->
+<!--<section class="page-header">-->
+<!--  <div class="container">-->
+<!--    <h1 class="page-title">Adaptive Model-based Testing <br> of Autonomous Driving Systems</h1>-->
+<!--    <p class="page-description">-->
+<!--      Testing Autonomous Driving Systems (ADS) is essential to ensure their safety and reliability in dynamic and unpredictable real-world environments.-->
+<!--      Model-Based Testing (MBT) has proven effective for complex software systems, including Cyber-Physical Systems and the Internet of Things.-->
+<!--      However, for intelligent systems like ADS, much of their behavior can only be observed during operation.-->
+<!--      This calls for adaptive MBT approaches, where the test model—the foundation for generating test cases—evolves through continuous interaction with the system under test (SUT) during test execution.-->
+<!--      To address this need, we propose LiveTCM, a framework that adaptively generates test cases by interacting with ADS within simulation environments.-->
+<!--    </p>-->
+<!--    <a href="index.html" class="back-link">-->
+<!--      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+<!--        <path d="M15 18l-6-6 6-6"></path>-->
+<!--      </svg>-->
+<!--      Back to Home-->
+<!--    </a>-->
+<!--  </div>-->
+<!--</section>-->
+
+<!-- Overview Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title"> Overview</h2>
+<!--    <div class="overview-container">-->
+<!--      <p class="section-subtitle-overview">-->
+<!--        LiveTCM builds upon our previous work,-->
+<!--        RTCM<a href="#ref1" class="sup-reference"><sup>[1]</sup></a>,-->
+<!--        a methodology for statically generating test cases from test case specifications (TCS).-->
+<!--      </p>-->
+
+<!--      <p class="section-subtitle-overview">-->
+<!--        RTCM is supported by a metamodel that formalizes key testing concepts such as test setup,-->
+<!--        test sequence, and test oracle, and enables the transformation of TCS in natural language-->
+<!--        into structured instances of the metamodel, which can then be converted into executable test cases.-->
+<!--      </p>-->
+
+<!--      <p class="section-subtitle-overview">-->
+<!--        To streamline this transformation process, RTCM includes a tabular template primarily for-->
+<!--        documenting event flows, along with a set of well-defined keywords such as VALIDATES THAT-->
+<!--        and INVOKE API to guide the accurate generation of test cases.-->
+<!--      </p>-->
+
+<!--      <p class="section-subtitle-overview">-->
+<!--        However, RTCM and similar MBT approaches fall short in testing ADS, as they rely on static-->
+<!--        test generation and do not sufficiently account for the evolving nature of these systems and-->
+<!--        their operational environments.-->
+<!--      </p>-->
+
+<!--      <p class="section-subtitle-overview">-->
+<!--        This highlights the need for a new methodology capable of generating and executing TCS dynamically,-->
+<!--        through continuous interaction with the system and its environment. Furthermore, the resulting TCS-->
+<!--        should be treated as valuable artifacts that contribute to a deeper understanding of both the system-->
+<!--        and its operational context.-->
+<!--      </p>-->
+<!--    </div>-->
+
+    <div class="research-card">
+      <div class="research-card-image">
+
+        <video id="protectedVideo" width="100%" height="100%" controls poster="https://via.placeholder.com/823x500?text=IsingBench+Demo">
+          <source src="imgs/IsingBench-demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="research-card-content">
+        <h3 class="research-card-title">IsingBench</h3>
+        <p class="research-card-text">
+          IsingBench serves as a unified command-line framework for solving Test Suite Optimization problems through the Ising model computational paradigm.
+            It provides a structured pipeline for encoding TSO problem instances into Ising Hamiltonians, solving them via interchangeable solvers, and decoding the solutions back into optimized test case selections.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Publication Section -->
+<!--<section class="section">-->
+<!--  <div class="container">-->
+<!--    <h2 class="section-title">Research Publications</h2>-->
+<!--    <p class="section-subtitle">-->
+<!--      Explore our foundational research and related publications-->
+<!--    </p>-->
+
+<!--    <div class="setup-steps">-->
+<!--      <h3 class="step-title">Restricted Natural Language and Model-based Adaptive Test Generation for Autonomous Driving</h3>-->
+<!--      <p>-->
+<!--        Y. Shi, C. Lu, M. Zhang, H. Zhang, T. Yue and S. Ali, "Restricted Natural Language and Model-based Adaptive Test Generation for Autonomous Driving,"-->
+<!--        2021 ACM/IEEE 24th International Conference on Model Driven Engineering Languages and Systems (MODELS), 2021, pp. 101-111,-->
+<!--        doi: 10.1109/MODELS50736.2021.00019.-->
+<!--      </p>-->
+<!--      <a href="https://doi.org/10.1109/MODELS50736.2021.00019" class="btn btn-primary" style="margin-top: 1rem;">-->
+<!--        View Publication-->
+<!--      </a>-->
+<!--    </div>-->
+
+<!--    <div class="setup-steps" style="margin-top: 2rem;">-->
+<!--      <h3 class="step-title">Related Publications</h3>-->
+
+<!--      <div class="reference-item" id="ref1">-->
+<!--        <div class="reference-title">[1] RTCM: a natural language based, automated, and practical test case generation framework</div>-->
+<!--        <div class="reference-authors">Tao Yue, Shaukat Ali, and Man Zhang</div>-->
+<!--        <div class="reference-details">-->
+<!--          Proceedings of the 2015 International Symposium on Software Testing and Analysis (ISSTA 2015). Baltimore, MD, USA. Association for Computing Machinery, New York, NY, USA, 397–408-->
+<!--        </div>-->
+<!--        <a href="https://doi.org/10.1145/2771783.2771799" class="btn btn-primary" style="margin-top: 1rem;">-->
+<!--          View Publication-->
+<!--        </a>-->
+<!--      </div>-->
+
+<!--      <div class="reference-item" id="ref2">-->
+<!--        <div class="reference-title">[2] Learning Configurations of Operating Environment of Autonomous Vehicles to Maximize their Collisions</div>-->
+<!--        <div class="reference-authors">Chengjie Lu, Yize Shi, Huihui Zhang, Man Zhang, Tiexin Wang, Tao Yue, and Shaukat Ali</div>-->
+<!--        <div class="reference-details">-->
+<!--          IEEE Transactions on Software Engineering 49, 1 (2023), 384–402-->
+<!--        </div>-->
+<!--        <a href="https://doi.org/10.1109/TSE.2022.3150788" class="btn btn-primary" style="margin-top: 1rem;">-->
+<!--          View Publication-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">WSELab</div>
+        <p class="footer-description">
+          We advance SE with insight-driven design to build software that redefines what's possible.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li class="footer-item"><a href="https://github.com/WSE-Lab/IsingBench" class="footer-link">GitHub Repository</a></li>
+<!--          <li class="footer-item"><a href="https://doi.org/10.1109/MODELS50736.2021.00019" class="footer-link">Research Paper</a></li>-->
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links">
+          <li class="footer-item"><a href="index.html#about" class="footer-link">About</a></li>
+          <li class="footer-item"><a href="index.html#research" class="footer-link">Research</a></li>
+          <li class="footer-item"><a href="model-copilot.html" class="footer-link">ModelCopilot</a></li>
+          <li class="footer-item"><a href="index.html#team" class="footer-link">Team</a></li>
+          <li class="footer-item"><a href="index.html#contact" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 WSE Laboratory. All rights reserved.</p>
+      <p>All research materials including videos are protected intellectual property.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  // 视频保护功能
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('protectedVideo');
+    const protector = document.querySelector('.video-protector');
+    const warningMessage = document.querySelector('.video-protection-message');
+    const downloadWarning = document.getElementById('downloadWarning');
+    const overlay = document.getElementById('overlay');
+    const closeWarning = document.getElementById('closeWarning');
+
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target === video || e.target === protector) {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+    });
+
+    // 禁用快捷键
+    document.addEventListener('keydown', function(e) {
+      // Ctrl+S or Command+S
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+
+      // 打印屏幕
+      if (e.key === 'PrintScreen') {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+    });
+
+    // 阻止视频元素获取焦点
+    video.addEventListener('focus', function() {
+      this.blur();
+    });
+
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navbarLinks = document.querySelector('.navbar-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navbarLinks.classList.toggle('active');
+    });
+
+    const navLinks = document.querySelectorAll('.navbar-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbarLinks.classList.remove('active');
+      });
+    });
+
+    function scrollToReference(refId) {
+      const element = document.getElementById(refId);
+      if (element) {
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    document.querySelectorAll('.sup-reference').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const refId = this.getAttribute('href').substring(1);
+        scrollToReference(refId);
+        history.pushState(null, null, '#' + refId);
+      });
+    });
+
+    if(window.location.hash) {
+      history.replaceState(null, null, ' ');
+      setTimeout(function() {
+        const targetElement = document.getElementById(window.location.hash.substring(1));
+        if(targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          history.replaceState(null, null, window.location.href.split('#')[0] + window.location.hash);
+        }
+      }, 300);
+    }
+  });
+</script>
+</body>
+</html>
