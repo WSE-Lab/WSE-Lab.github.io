@@ -525,14 +525,16 @@
       background-color: #f0f5ff;
     }
 
-    .project-card-media img {
+    .project-card-media img,
+    .project-card-media video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
 
-    a.project-card:hover .project-card-media img {
+    a.project-card:hover .project-card-media img,
+    a.project-card:hover .project-card-media video {
       transform: scale(1.04);
     }
 
@@ -681,6 +683,20 @@
         </div>
       </a>
 
+      <a href="more.html" class="project-card">
+        <div class="project-card-media">
+          <img src="imgs/MoRE_demo.png" alt="MoRE demo screenshot">
+          <span class="project-tag">▶ Demo</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-card-title">MoRE</h3>
+          <p class="project-card-desc">
+            Explore the MoRE project and watch its demonstration video on the dedicated project page.
+          </p>
+          <span class="project-card-link">Explore MoRE →</span>
+        </div>
+      </a>
+
       <div class="project-card coming-soon">
         <div class="project-card-media">
           <span class="coming-soon-badge">Coming Soon</span>
@@ -714,6 +730,7 @@
         <ul class="footer-links">
           <li class="footer-item"><a href="livetcm.html" class="footer-link">LiveTCM</a></li>
           <li class="footer-item"><a href="crash2openx.html" class="footer-link">Crash2OpenX</a></li>
+          <li class="footer-item"><a href="more.html" class="footer-link">MoRE</a></li>
         </ul>
       </div>
 
