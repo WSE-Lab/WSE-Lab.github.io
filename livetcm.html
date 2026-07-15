@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ADS Testing - WSE Laboratory</title>
-  <meta name="description" content="Testing Autonomous Driving Systems at WSE Laboratory" />
+  <title>LiveTCM - WSE Laboratory</title>
+  <meta name="description" content="LiveTCM at WSE Laboratory" />
   <meta name="author" content="Man Zhang and Lovable" />
 
   <!-- Font import -->
@@ -487,115 +487,18 @@
       }
 
     }
-
-    /* Project cards (hub) */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      background-color: white;
-      border: 1px solid var(--neutral-100);
-      border-radius: 0.75rem;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-      color: var(--text-color);
-    }
-
-    a.project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(26, 124, 255, 0.15);
-      text-decoration: none;
-    }
-
-    a.project-card:hover .project-card-link {
-      text-decoration: underline;
-    }
-
-    .project-card-media {
-      position: relative;
-      height: 210px;
-      overflow: hidden;
-      background-color: #f0f5ff;
-    }
-
-    .project-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    a.project-card:hover .project-card-media img {
-      transform: scale(1.04);
-    }
-
-    .project-tag {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      background-color: rgba(255, 255, 255, 0.92);
-      color: var(--accent-color);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .project-card-body {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding: 1.75rem;
-    }
-
-    .project-card-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .project-card-desc {
-      color: var(--text-muted);
-      flex: 1;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-card-link {
-      color: var(--accent-color);
-      font-weight: 600;
-    }
-
-    .project-card.coming-soon .project-card-media {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(26, 124, 255, 0.10), rgba(26, 124, 255, 0.03));
-    }
-
-    .coming-soon-badge {
-      padding: 0.5rem 1.25rem;
-      border-radius: 9999px;
-      border: 1px dashed var(--accent-color);
-      color: var(--accent-color);
-      font-weight: 600;
-      background-color: rgba(255, 255, 255, 0.7);
-    }
-
   </style>
 </head>
 <body>
 <!-- Navbar -->
 <header class="navbar">
   <div class="container navbar-container">
-    <a href="index.html" class="navbar-logo">WSELab</a>
+
+    <div class="navbar-logo-container">
+      <img src="imgs/modelcopilot-icon.png" class="modelcopilot-icon" alt="ModelCopilot Icon">
+      <a href="index.html" class="navbar-logo"> at WSELab</a>
+    </div>
+
     <nav class="navbar-links">
       <a href="index.html#about" class="navbar-link">About</a>
       <a href="index.html#research" class="navbar-link">Research</a>
@@ -608,14 +511,17 @@
   </div>
 </header>
 
+
 <!-- Page Header -->
 <section class="page-header">
   <div class="container">
-    <h1 class="page-title">Testing of Autonomous <br> Driving Systems</h1>
+    <h1 class="page-title">Adaptive Model-based Testing <br> of Autonomous Driving Systems</h1>
     <p class="page-description">
-      Ensuring the safety and reliability of Autonomous Driving Systems (ADS) requires testing them in dynamic and
-      unpredictable real-world environments. At WSELab, we pursue this goal along complementary directions —
-      from adaptive model-based testing to scenario generation grounded in real-world crash reports.
+      Testing Autonomous Driving Systems (ADS) is essential to ensure their safety and reliability in dynamic and unpredictable real-world environments.
+      Model-Based Testing (MBT) has proven effective for complex software systems, including Cyber-Physical Systems and the Internet of Things.
+      However, for intelligent systems like ADS, much of their behavior can only be observed during operation.
+      This calls for adaptive MBT approaches, where the test model—the foundation for generating test cases—evolves through continuous interaction with the system under test (SUT) during test execution.
+      To address this need, we propose LiveTCM, a framework that adaptively generates test cases by interacting with ADS within simulation environments.
     </p>
     <a href="index.html" class="back-link">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -629,71 +535,106 @@
 <!-- Overview Section -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Overview</h2>
+    <h2 class="section-title"> Overview</h2>
     <div class="overview-container">
       <p class="section-subtitle-overview">
-        Much of the behavior of intelligent systems like ADS can only be observed during operation. This calls for
-        testing approaches that continuously interact with the system under test and its simulated environment —
-        generating, executing, and verifying test scenarios dynamically rather than statically.
+        LiveTCM builds upon our previous work,
+        RTCM<a href="#ref1" class="sup-reference"><sup>[1]</sup></a>,
+        a methodology for statically generating test cases from test case specifications (TCS).
       </p>
+
       <p class="section-subtitle-overview">
-        Our work in this direction spans a family of tools: LiveTCM adaptively generates test case specifications
-        by interacting with ADS in simulation; Crash2OpenX grounds scenario generation in real-world crashes by
-        transforming natural-language crash reports into executable OpenDRIVE/OpenSCENARIO scenarios; and further
-        efforts along this line are on the way.
+        RTCM is supported by a metamodel that formalizes key testing concepts such as test setup,
+        test sequence, and test oracle, and enables the transformation of TCS in natural language
+        into structured instances of the metamodel, which can then be converted into executable test cases.
+      </p>
+
+      <p class="section-subtitle-overview">
+        To streamline this transformation process, RTCM includes a tabular template primarily for
+        documenting event flows, along with a set of well-defined keywords such as VALIDATES THAT
+        and INVOKE API to guide the accurate generation of test cases.
+      </p>
+
+      <p class="section-subtitle-overview">
+        However, RTCM and similar MBT approaches fall short in testing ADS, as they rely on static
+        test generation and do not sufficiently account for the evolving nature of these systems and
+        their operational environments.
+      </p>
+
+      <p class="section-subtitle-overview">
+        This highlights the need for a new methodology capable of generating and executing TCS dynamically,
+        through continuous interaction with the system and its environment. Furthermore, the resulting TCS
+        should be treated as valuable artifacts that contribute to a deeper understanding of both the system
+        and its operational context.
       </p>
     </div>
 
-    <h2 class="section-title">Our Work</h2>
+    <div class="research-card">
+      <div class="research-card-image">
+
+        <video id="protectedVideo" width="100%" height="100%" controls poster="https://via.placeholder.com/823x500?text=LiveTCM+Demo">
+          <source src="imgs/liveTCM-demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="research-card-content">
+        <h3 class="research-card-title">LiveTCM</h3>
+        <p class="research-card-text">
+          The LiveTCM Editor serves as the primary interface for users to interact with the LiveTCM framework.
+          It provides a dedicated pane for specifying and visualizing key components of a TCS, including the precondition (test data specification), test setup, and test steps, which are organized as structured flows of events.
+        </p>
+        <p class="research-card-text">
+          Test Case Specification Generator of LiveTCM can automatically and dynamically generate, execute, and verify TCS together with various test scenario generation strategies such as DeepCollision<a href="#ref2" class="sup-reference"><sup>[2]</sup></a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Publication Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Research Publications</h2>
     <p class="section-subtitle">
-      Explore each project below — every card leads to a dedicated page with a demo video.
+      Explore our foundational research and related publications
     </p>
 
-    <div class="project-grid">
-
-      <a href="livetcm.html" class="project-card">
-        <div class="project-card-media">
-          <img src="imgs/livetcm-thumb.jpg" alt="LiveTCM demo screenshot">
-          <span class="project-tag">▶ Demo</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-card-title">LiveTCM</h3>
-          <p class="project-card-desc">
-            An adaptive model-based testing framework that dynamically generates, executes, and verifies test case
-            specifications through continuous interaction with ADS in simulation environments.
-          </p>
-          <span class="project-card-link">Explore LiveTCM →</span>
-        </div>
+    <div class="setup-steps">
+      <h3 class="step-title">Restricted Natural Language and Model-based Adaptive Test Generation for Autonomous Driving</h3>
+      <p>
+        Y. Shi, C. Lu, M. Zhang, H. Zhang, T. Yue and S. Ali, "Restricted Natural Language and Model-based Adaptive Test Generation for Autonomous Driving,"
+        2021 ACM/IEEE 24th International Conference on Model Driven Engineering Languages and Systems (MODELS), 2021, pp. 101-111,
+        doi: 10.1109/MODELS50736.2021.00019.
+      </p>
+      <a href="https://doi.org/10.1109/MODELS50736.2021.00019" class="btn btn-primary" style="margin-top: 1rem;">
+        View Publication
       </a>
+    </div>
 
-      <a href="crash2openx.html" class="project-card">
-        <div class="project-card-media">
-          <img src="imgs/crash2openx-thumb.jpg" alt="Crash2OpenX demo screenshot">
-          <span class="project-tag">▶ Demo</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-card-title">Crash2OpenX</h3>
-          <p class="project-card-desc">
-            A model-transformation toolchain that turns natural-language crash reports into executable
-            OpenDRIVE/OpenSCENARIO scenarios and replays them in CARLA under autonomous-driving agents.
-          </p>
-          <span class="project-card-link">Explore Crash2OpenX →</span>
-        </div>
-      </a>
+    <div class="setup-steps" style="margin-top: 2rem;">
+      <h3 class="step-title">Related Publications</h3>
 
-      <div class="project-card coming-soon">
-        <div class="project-card-media">
-          <span class="coming-soon-badge">Coming Soon</span>
+      <div class="reference-item" id="ref1">
+        <div class="reference-title">[1] RTCM: a natural language based, automated, and practical test case generation framework</div>
+        <div class="reference-authors">Tao Yue, Shaukat Ali, and Man Zhang</div>
+        <div class="reference-details">
+          Proceedings of the 2015 International Symposium on Software Testing and Analysis (ISSTA 2015). Baltimore, MD, USA. Association for Computing Machinery, New York, NY, USA, 397–408
         </div>
-        <div class="project-card-body">
-          <h3 class="project-card-title">More to Come</h3>
-          <p class="project-card-desc">
-            A new line of work on testing autonomous driving systems is under way. Stay tuned for its demo
-            and dedicated page.
-          </p>
-        </div>
+        <a href="https://doi.org/10.1145/2771783.2771799" class="btn btn-primary" style="margin-top: 1rem;">
+          View Publication
+        </a>
       </div>
 
+      <div class="reference-item" id="ref2">
+        <div class="reference-title">[2] Learning Configurations of Operating Environment of Autonomous Vehicles to Maximize their Collisions</div>
+        <div class="reference-authors">Chengjie Lu, Yize Shi, Huihui Zhang, Man Zhang, Tiexin Wang, Tao Yue, and Shaukat Ali</div>
+        <div class="reference-details">
+          IEEE Transactions on Software Engineering 49, 1 (2023), 384–402
+        </div>
+        <a href="https://doi.org/10.1109/TSE.2022.3150788" class="btn btn-primary" style="margin-top: 1rem;">
+          View Publication
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -710,10 +651,10 @@
       </div>
 
       <div>
-        <h3 class="footer-heading">Projects</h3>
+        <h3 class="footer-heading">Resources</h3>
         <ul class="footer-links">
-          <li class="footer-item"><a href="livetcm.html" class="footer-link">LiveTCM</a></li>
-          <li class="footer-item"><a href="crash2openx.html" class="footer-link">Crash2OpenX</a></li>
+          <li class="footer-item"><a href="https://github.com/WSE-Lab/LiveTCM" class="footer-link">GitHub Repository</a></li>
+          <li class="footer-item"><a href="https://doi.org/10.1109/MODELS50736.2021.00019" class="footer-link">Research Paper</a></li>
         </ul>
       </div>
 
@@ -738,7 +679,43 @@
 
 <!-- JavaScript -->
 <script>
+  // 视频保护功能
   document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('protectedVideo');
+    const protector = document.querySelector('.video-protector');
+    const warningMessage = document.querySelector('.video-protection-message');
+    const downloadWarning = document.getElementById('downloadWarning');
+    const overlay = document.getElementById('overlay');
+    const closeWarning = document.getElementById('closeWarning');
+
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target === video || e.target === protector) {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+    });
+
+    // 禁用快捷键
+    document.addEventListener('keydown', function(e) {
+      // Ctrl+S or Command+S
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+
+      // 打印屏幕
+      if (e.key === 'PrintScreen') {
+        e.preventDefault();
+        showDownloadWarning();
+      }
+    });
+
+    // 阻止视频元素获取焦点
+    video.addEventListener('focus', function() {
+      this.blur();
+    });
+
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -761,6 +738,38 @@
         navbarLinks.classList.remove('active');
       });
     });
+
+    function scrollToReference(refId) {
+      const element = document.getElementById(refId);
+      if (element) {
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    document.querySelectorAll('.sup-reference').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const refId = this.getAttribute('href').substring(1);
+        scrollToReference(refId);
+        history.pushState(null, null, '#' + refId);
+      });
+    });
+
+    if(window.location.hash) {
+      history.replaceState(null, null, ' ');
+      setTimeout(function() {
+        const targetElement = document.getElementById(window.location.hash.substring(1));
+        if(targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          history.replaceState(null, null, window.location.href.split('#')[0] + window.location.hash);
+        }
+      }, 300);
+    }
   });
 </script>
 </body>
