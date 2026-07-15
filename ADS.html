@@ -588,6 +588,28 @@
         </p>
       </div>
     </div>
+
+    <div class="research-card">
+      <div class="research-card-image">
+
+        <video id="protectedVideo2" width="100%" height="100%" controls poster="https://via.placeholder.com/823x500?text=Crash2OpenX+Demo">
+          <source src="imgs/Crash2OpenX-demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="research-card-content">
+        <h3 class="research-card-title">Crash2OpenX</h3>
+        <p class="research-card-text">
+          Crash2OpenX is a model-transformation toolchain that turns a natural-language crash report (NHTSA / California DMV style, in PDF or plain text) into a pair of executable simulation artifacts
+          — an OpenDRIVE 1.5 road network and a matching OpenSCENARIO 1.0 scene — and runs the pair in CARLA under an autonomous-driving agent loaded via PCLA.
+        </p>
+        <p class="research-card-text">
+          The pipeline consists of three validated layers: LLM agents extract coupled RoadSeed and SceneSeed models from the crash report under OCL constraint checking;
+          deterministic compilers translate the seeds into schema-validated OpenDRIVE and OpenSCENARIO files;
+          and the scenario is executed in CARLA, where recorded traces and metrics are checked against the declared collision intent.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -682,6 +704,7 @@
   // 视频保护功能
   document.addEventListener('DOMContentLoaded', function() {
     const video = document.getElementById('protectedVideo');
+    const video2 = document.getElementById('protectedVideo2');
     const protector = document.querySelector('.video-protector');
     const warningMessage = document.querySelector('.video-protection-message');
     const downloadWarning = document.getElementById('downloadWarning');
@@ -690,7 +713,7 @@
 
     // 禁用右键菜单
     document.addEventListener('contextmenu', function(e) {
-      if (e.target === video || e.target === protector) {
+      if (e.target === video || e.target === video2 || e.target === protector) {
         e.preventDefault();
         showDownloadWarning();
       }
@@ -713,6 +736,9 @@
 
     // 阻止视频元素获取焦点
     video.addEventListener('focus', function() {
+      this.blur();
+    });
+    video2.addEventListener('focus', function() {
       this.blur();
     });
 
