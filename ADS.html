@@ -582,6 +582,91 @@
       background-color: rgba(255, 255, 255, 0.7);
     }
 
+    .publications-section {
+      margin-top: 5rem;
+    }
+
+    .publication-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: 2rem;
+    }
+
+    .publication-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 2rem;
+      border: 1px solid var(--neutral-300);
+      border-radius: 0.5rem;
+      background-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .publication-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(26, 124, 255, 0.35);
+      box-shadow: 0 15px 35px rgba(26, 124, 255, 0.12);
+    }
+
+    .publication-year {
+      align-self: flex-end;
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .publication-title {
+      margin-bottom: 0.75rem;
+      font-size: 1.35rem;
+      line-height: 1.35;
+    }
+
+    .publication-title a {
+      color: var(--text-color);
+    }
+
+    .publication-title a:hover {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .publication-authors {
+      margin-bottom: 1.15rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .publication-summary {
+      flex: 1;
+      margin-bottom: 1.4rem;
+      color: var(--text-muted);
+    }
+
+    .publication-venue {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin-bottom: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--neutral-300);
+      color: var(--text-muted);
+    }
+
+    .publication-venue-label {
+      flex: 0 0 auto;
+      color: var(--text-color);
+      font-weight: 700;
+    }
+
+    .publication-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
   </style>
 </head>
 <body>
@@ -706,6 +791,56 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="publications-section">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-subtitle">
+        Research publications on autonomous driving systems.
+      </p>
+
+      <div class="publication-grid">
+        <article class="publication-card">
+          <span class="publication-year">2026</span>
+          <h3 class="publication-title">
+            <a href="https://doi.org/10.1145/3743673" target="_blank" rel="noopener noreferrer">Simulation-based safety assessment of vehicle characteristics variations in autonomous driving systems</a>
+          </h3>
+          <p class="publication-authors">Qi Pan, Tiexin Wang, Jianwei Ma, Paolo Arcaini, and Tao Yue</p>
+          <p class="publication-summary">
+            This work introduces SafeVar, a simulation-based method for identifying minimal variations in vehicle
+            characteristics, such as mass and tire friction, that can affect ADS safety. Evaluation with two ADSs and
+            two driving scenarios shows that its NSGA-II configuration identifies more safety-critical settings than
+            the baseline.
+          </p>
+          <p class="publication-venue">
+            <span class="publication-venue-label">Venue</span>
+            <span><em>ACM Transactions on Software Engineering and Methodology</em></span>
+          </p>
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1145/3743673" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Publication</a>
+          </div>
+        </article>
+
+        <article class="publication-card">
+          <span class="publication-year">2025</span>
+          <h3 class="publication-title">
+            <a href="https://doi.org/10.1007/s10270-024-01261-2" target="_blank" rel="noopener noreferrer">Safety behavior abstraction and model evolution in autonomous driving</a>
+          </h3>
+          <p class="publication-authors">Chao Tan, Tiexin Wang, Man Zhang, and Tao Yue</p>
+          <p class="publication-summary">
+            This work presents REMEDY, a risk-based approach for comprehending and evolving high-level ADS behavior
+            models through execution and simulation in CARLA. A Q-Learning strategy guides model evolution toward new,
+            diverse, and risky driving behaviors and is evaluated against three baseline strategies.
+          </p>
+          <p class="publication-venue">
+            <span class="publication-venue-label">Venue</span>
+            <span><em>Software and Systems Modeling</em></span>
+          </p>
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1007/s10270-024-01261-2" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Publication</a>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
