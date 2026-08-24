@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IsingBench - WSE Laboratory</title>
+  <meta name="description" content="IsingBench at WSE Laboratory" />
+  <meta name="author" content="WSE Laboratory" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <style>
+    :root {
+      --accent-color: #1a7cff;
+      --accent-light: #3d8cfa;
+      --neutral-50: #f8f9fa;
+      --neutral-100: #f1f3f5;
+      --neutral-300: #dee2e6;
+      --neutral-800: #343a40;
+      --text-color: #212529;
+      --text-muted: #6c757d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--neutral-50);
+    }
+    a { color: var(--accent-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: 100%; max-width: 1200px; padding: 0 2rem; margin: 0 auto; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary { background-color: var(--accent-color); color: white; border: none; }
+    .btn-primary:hover { background-color: var(--accent-light); text-decoration: none; }
+    .btn-secondary { background-color: transparent; color: var(--text-color); border: 1px solid var(--neutral-300); }
+    .btn-secondary:hover { background-color: var(--neutral-100); text-decoration: none; }
+
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--neutral-100);
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled { padding: 0.5rem 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+    .navbar-container { display: flex; justify-content: space-between; align-items: center; }
+    .navbar-logo { font-weight: 700; font-size: 1.5rem; color: var(--text-color); }
+    .navbar-links { display: flex; gap: 1.5rem; }
+    .navbar-link { color: var(--text-color); font-weight: 500; }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+    .page-header {
+      padding: 8rem 0 4rem;
+      background: linear-gradient(to bottom right, rgba(26, 124, 255, 0.1), rgba(26, 124, 255, 0.05));
+      text-align: center;
+    }
+    .page-title { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .page-description {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 850px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+    .back-link { display: inline-flex; align-items: center; margin-bottom: 2rem; font-weight: 500; }
+    .back-link svg { margin-right: 0.5rem; }
+
+    .section { padding: 5rem 0; }
+    .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 42rem;
+      margin: 0 auto 3rem;
+    }
+    .section-subtitle-overview {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 55rem;
+      margin: 0 auto 3rem;
+    }
+    .overview-container { max-width: 1000px; margin: 0 auto 3rem; text-align: left; }
+    .overview-container p { width: 100%; line-height: 1.7; margin-bottom: 1.4rem; hyphens: auto; }
+
+    .research-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .research-card-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      background-color: #f0f5ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+      font-size: 3rem;
+      position: relative;
+    }
+    .research-card-image video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+    .research-card-content { padding: 2rem; }
+    .research-card-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    .research-card-text { margin-bottom: 1.5rem; }
+
+    .setup-steps {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin: 2rem 0;
+    }
+    .step-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent-color); }
+    .reference-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--neutral-300);
+      scroll-margin-top: 100px;
+    }
+    .reference-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .reference-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .reference-authors { font-style: italic; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .reference-details { margin-bottom: 0.5rem; }
+
+    .footer { background-color: var(--neutral-100); padding: 4rem 0 2rem; }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer-description { margin-bottom: 1.5rem; color: var(--text-muted); }
+    .footer-heading { font-size: 1.125rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .footer-links { list-style-type: none; }
+    .footer-item { margin-bottom: 0.75rem; }
+    .footer-link { color: var(--text-muted); transition: color 0.3s ease; }
+    .footer-link:hover { color: var(--accent-color); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--neutral-300);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      .page-title { font-size: 2.5rem; }
+      .section-title { font-size: 2rem; }
+      .navbar-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 1rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--neutral-100);
+      }
+      .research-card-image { height: auto; min-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+<header class="navbar">
+  <div class="container navbar-container">
+    <a href="index.html" class="navbar-logo">WSELab</a>
+    <nav class="navbar-links">
+      <a href="index.html#about" class="navbar-link">About</a>
+      <a href="index.html#research" class="navbar-link">Research</a>
+      <a href="news.html" class="navbar-link">News</a>
+      <a href="model-copilot.html" class="navbar-link">ModelCopilot</a>
+      <a href="mde-uncertainty.html" class="navbar-link">MDE &amp; Uncertainty</a>
+      <a href="QSE.html" class="navbar-link">QSE</a>
+      <a href="ADS.html" class="navbar-link">ADS</a>
+      <a href="index.html#team" class="navbar-link">Team</a>
+      <a href="index.html#contact" class="navbar-link">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation">☰</button>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">IsingBench</h1>
+    <p class="page-description">
+      An open-source framework for Ising-based test optimization and benchmarking.
+    </p>
+    <a href="QSE.html" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"></path>
+      </svg>
+      Back to QSE
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Overview</h2>
+    <div class="overview-container">
+      <p class="section-subtitle-overview">
+        Test optimization problems such as test case selection and test case minimization are long-standing combinatorial optimization challenges in software testing. Ising-based computing offers a new way to formulate and solve such problems by representing them through Ising models and executing them with different solver paradigms.
+      </p>
+      <p class="section-subtitle-overview">
+        IsingBench provides an open-source environment for studying this direction systematically. It brings together benchmark datasets, Ising formulations, configurable solvers, and result analysis in a unified workflow, enabling researchers to evaluate Ising-based test optimization methods under consistent experimental settings.
+      </p>
+      <p class="section-subtitle-overview">
+        The framework is accompanied by IsingTester, which supports the end-to-end process of encoding test optimization problems into Ising representations, executing selected solvers, and decoding the resulting solutions back into optimized test suites.
+      </p>
+    </div>
+
+    <div class="research-card">
+      <div class="research-card-image">
+        <video id="protectedVideo" controls preload="metadata">
+          <source src="https://raw.githubusercontent.com/WSE-Lab/IsingBench/main/demonstration.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="research-card-content">
+        <h3 class="research-card-title">IsingBench Demo</h3>
+        <p class="research-card-text">
+          The demonstration shows how IsingBench supports an end-to-end test optimization workflow, from selecting a benchmark problem and solver configuration to executing the optimization and inspecting the resulting solution and analysis.
+        </p>
+        <a href="https://github.com/WSE-Lab/IsingBench" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Research Publications</h2>
+    <p class="section-subtitle">Explore our foundational research and related publications</p>
+
+    <div class="setup-steps">
+      <h3 class="step-title">Ising-based Test Optimization and Benchmarking</h3>
+      <p>
+        Y. Yang, M. Zhang, and T. Yue, “Ising-based Test Optimization and Benchmarking,” 2026 IEEE International Conference on Software Testing, Verification and Validation (ICST), 2026, pp. 314–318.
+      </p>
+      <a href="https://ieeexplore.ieee.org/abstract/document/11600467/" class="btn btn-primary" style="margin-top: 1rem;" target="_blank" rel="noopener noreferrer">
+        View Publication
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">WSELab</div>
+        <p class="footer-description">We advance SE with insight-driven design to build software that redefines what's possible.</p>
+      </div>
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li class="footer-item"><a href="https://github.com/WSE-Lab/IsingBench" class="footer-link">GitHub Repository</a></li>
+          <li class="footer-item"><a href="https://ieeexplore.ieee.org/abstract/document/11600467/" class="footer-link">Research Paper</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links">
+          <li class="footer-item"><a href="index.html#about" class="footer-link">About</a></li>
+          <li class="footer-item"><a href="index.html#research" class="footer-link">Research</a></li>
+          <li class="footer-item"><a href="model-copilot.html" class="footer-link">ModelCopilot</a></li>
+          <li class="footer-item"><a href="QSE.html" class="footer-link">Quantum Software Engineering</a></li>
+          <li class="footer-item"><a href="index.html#contact" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 WSE Laboratory. All rights reserved.</p>
+      <p>All research materials including videos are protected intellectual property.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navbarLinks = document.querySelector('.navbar-links');
+    mobileMenuBtn.addEventListener('click', () => navbarLinks.classList.toggle('active'));
+    document.querySelectorAll('.navbar-link').forEach(link => {
+      link.addEventListener('click', () => navbarLinks.classList.remove('active'));
+    });
+  });
+</script>
+</body>
+</html>
