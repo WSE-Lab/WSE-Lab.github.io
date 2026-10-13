@@ -1,5 +1,7 @@
 # Systematic Investigation into Quantum Optimization for Software Engineering
 
+Website: [https://www.modelcopilot.org/paper_webpages/quantum_optimization_for_SE/](https://www.modelcopilot.org/paper_webpages/quantum_optimization_for_SE/)
+
 A static GitHub Pages catalog merging the Survey Paper and Analysis Paper datasets by normalized paper title. The page presents publication cards, BibTeX, filters, summary charts, and merged analysis metadata with LaTeX rendering.
 
 ## Search and compare metadata
