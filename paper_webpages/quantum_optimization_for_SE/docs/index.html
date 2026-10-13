@@ -1,0 +1,319 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Systematic Investigation into Quantum Optimization for Software Engineering</title><link rel="stylesheet" href="assets/css/style.css?v=20261013-actions"><script>window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body><header class="site-header"><div class="wrap nav"><a class="brand" href="./">Quantum Optimization for SE</a><nav aria-label="Page sections"><a href="#overview">Overview</a><a href="#collection">Study collection</a><a href="#data-overview">Data overview</a><a href="#catalog">Catalog</a></nav></div></header><main><section class="hero wrap"><p class="eyebrow">Research data catalog</p><h1>Systematic Investigation into Quantum Optimization for Software Engineering</h1><p class="lede">A searchable catalog merging matching studies from the Survey Paper and Analysis Paper datasets.</p></section><section id="overview" class="research-overview wrap" aria-labelledby="research-heading">
+<div class="section-heading"><div><p class="eyebrow">About the research</p><h2 id="research-heading">From optimization approaches to empirical evidence</h2></div></div>
+<p class="research-intro">Software engineering involves optimization problems such as selecting test cases, configuring software, and allocating resources. These two papers examine how quantum, quantum-inspired, and hybrid approaches are applied to such problems, and how their evaluations are designed and reported.</p>
+<div class="research-grid">
+<article class="research-summary research-summary--survey"><p class="eyebrow">Survey Paper</p><h3>Quantum Optimization for Software Engineering: A Survey</h3><p>This systematic literature review examines quantum and quantum-inspired algorithms for classical software engineering optimization problems. It analyzes 76 primary studies selected from 2,083 publications retrieved across six digital databases. The findings show a concentration on software operations and testing, gaps in other software engineering activities, and relevant research published outside traditional software engineering venues.</p><div class="paper-actions"><a href="https://dl.acm.org/doi/pdf/10.1145/3816147" target="_blank" rel="noopener">Paper</a><button type="button" onclick="showSourceBibtex('survey')" aria-label="View BibTeX for the survey paper">BibTeX</button><a href="https://github.com/WSE-Lab/QuantumOpt4SE" target="_blank" rel="noopener" aria-label="Artifact for the survey paper">Artifact</a></div></article>
+<article class="research-summary research-summary--analysis"><p class="eyebrow">Analysis Paper</p><h3>Empirical Studies on Quantum Optimization for Software Engineering: A Systematic Analysis</h3><p>Drawing on primary studies identified by the survey, this systematic analysis examines how quantum, quantum-inspired, and hybrid optimization approaches are evaluated. It covers experimental designs, hyperparameters, case studies, baselines, tooling, and metrics. The findings highlight limited reporting of repetitions and shots, inadequate attention to noise, and a lack of standardized evaluation protocols, especially for quantum-specific metrics. The paper calls for more real-world and open case studies to assess cost-effectiveness and practical utility.</p><div class="paper-actions"><a href="https://arxiv.org/pdf/2510.27113" target="_blank" rel="noopener">Paper</a><button type="button" onclick="showSourceBibtex('analysis')" aria-label="View BibTeX for the analysis paper">BibTeX</button><a href="https://github.com/WSE-Lab/QuantumOpt4SE-EmpiricalStudies" target="_blank" rel="noopener" aria-label="Artifact for the analysis paper">Artifact</a></div></article>
+</div><p class="research-note">Use the catalog to connect each study's optimization approach with its evaluation evidence. Counts below reflect the current source datasets, which may differ from the study sets reported in the papers.</p>
+</section><section id="collection" class="collection-method wrap" aria-labelledby="collection-heading">
+<div class="section-heading"><div><p class="eyebrow">Study collection</p><h2 id="collection-heading">How the primary studies were collected</h2></div></div>
+<p>We collected primary studies through database searching, paper selection, and snowballing. The search queries combined five sets of terms covering quantum computing, optimization problems, optimization techniques, software engineering activities, and software. On January 13, 2025, we searched ACM, IEEE Xplore, Scopus, Springer Nature Link, Web of Science, and Wiley, retrieving 2,083 publications published between 2014 and 2025.</p>
+<p>We retained English-language papers that addressed a specific software engineering optimization problem and employed or proposed a quantum-related solution. Theses, surveys, and systematic literature reviews were excluded. All authors participated in selection and confirmed the inclusion decisions, resulting in 39 selected studies.</p>
+<p>On April 25, 2025, we used these studies as the starting set for backward and forward snowballing. We examined references and citing papers, applied the same selection criteria, and repeated the process until no further publications were identified. Three authors discussed the candidates until reaching consensus. The original collection comprised 77 primary studies, as retained in the updated survey dataset.</p>
+<p class="collection-note">(Note: The catalog contains 77 studies from the original collection. The published Survey Paper reports 76 studies; on October 8, 2026, its repository restored <em>Performance-Driven QUBO for Recommender Systems on Quantum Annealers</em> to <code>updated_selection.csv</code> after its journal publication, bringing the dataset back to 77. The Analysis Paper starts from these 77 studies but excludes one without an experimental evaluation, leaving 76 studies in its analysis. See the <a href="https://github.com/WSE-Lab/QuantumOpt4SE#updates" target="_blank" rel="noopener">survey repository update</a> and the <a href="https://github.com/WSE-Lab/QuantumOpt4SE-EmpiricalStudies#readme" target="_blank" rel="noopener">analysis repository explanation</a>.)</p>
+<figure class="method-figure"><a href="assets/figs/method-diagram.pdf" target="_blank" rel="noopener" aria-label="Open the study collection methodology diagram as a PDF"><img src="assets/figs/method-diagram.png" alt="Study collection workflow: define keywords and eligibility criteria; search six databases; screen and discuss candidate papers; perform backward and forward snowballing; repeat screening to obtain the included studies." loading="lazy"></a></figure>
+
+</section><section id="data-overview" class="analytics wrap"><div class="section-heading"><div><p class="eyebrow">Live analysis</p><h2>What the merged data contains</h2></div><p id="status" class="result-count">Loading both CSV files...</p></div><div class="charts"><div class="chart-panel"><h3>Studies by year</h3><div id="year-chart" class="bar-chart"></div></div><div class="chart-panel"><h3>Optimization type</h3><div id="type-chart" class="bar-chart"></div></div><div class="chart-panel"><h3>Quantum algorithm</h3><div id="algorithm-chart" class="bar-chart"></div></div><div class="chart-panel chart-panel--venue"><h3>Venue</h3><div id="venue-chart" class="bar-chart"></div></div><div class="chart-panel chart-panel--activity"><h3>SE activity</h3><div id="activity-chart" class="bar-chart"></div></div></div></section><section id="catalog" class="catalog wrap"><div class="section-heading"><div><p class="eyebrow">Merged catalog</p><h2>Explore the evidence</h2></div><p id="result-count" class="result-count" aria-live="polite"></p></div><div class="metadata-search"><label for="metadata-field">Search in</label><select id="metadata-field" aria-describedby="search-help"><option value="all">Title and all analysis metadata</option><option value="title">Paper title only</option></select><label class="sr-only" for="search">Search papers or metadata</label><input id="search" type="search" placeholder="Try QAOA, benchmark, shots, or a metric" aria-describedby="search-help"><button id="clear-search" type="button">Clear search</button></div><p id="search-help" class="search-help">Search any field name or value, or select a category or field in Search in to compare papers in a table. Leave the keyword empty to see all reported values in the selected category.</p><div class="filters"><select id="year"><option value="">All years</option></select><select id="venue"><option value="">All venues</option></select><select id="type"><option value="">All optimization types</option></select><select id="venue-type"><option value="">All venue types</option></select></div><div class="source-legend catalog-legend"><span><i class="legend-survey"></i> Survey Paper</span><span><i class="legend-analysis"></i> Analysis Paper</span><span><i class="legend-both"></i> Both sources</span></div><div id="cards" class="cards"></div><div id="table-view" hidden><div class="table-controls"><span class="resize-help">Drag a header divider to resize columns.</span><label for="year-order">Year order</label><select id="year-order"><option value="asc">Oldest first</option><option value="desc">Newest first</option></select></div><div id="table-results" class="table-scroll" role="region" aria-label="Metadata comparison" tabindex="0"></div></div><p id="empty" class="empty" hidden>No studies match these filters.</p></section><div id="modal" class="detail-modal" hidden><div class="detail-backdrop" data-close></div><article class="detail-dialog" role="dialog" aria-modal="true"><button class="detail-close" data-close aria-label="Close">x</button><div id="detail"></div></article></div><section id="sources" class="sources"><div class="wrap"><p class="eyebrow">Reproducibility</p><h2>Source datasets</h2><div class="source-grid"><a class="source" href="https://github.com/WSE-Lab/QuantumOpt4SE/blob/main/data/updated_selection.csv" target="_blank"><b>Survey Paper</b><small>updated_selection.csv -&gt;</small></a><a class="source" href="https://github.com/WSE-Lab/QuantumOpt4SE-EmpiricalStudies/blob/main/extracted_data.csv" target="_blank"><b>Analysis Paper</b><small>extracted_data.csv -&gt;</small></a></div></div></section></main><footer class="footer"><div class="wrap">Systematic Investigation into Quantum Optimization for Software Engineering</div></footer><script>
+const URLS={survey:'https://raw.githubusercontent.com/WSE-Lab/QuantumOpt4SE/main/data/updated_selection.csv',analysis:'https://raw.githubusercontent.com/WSE-Lab/QuantumOpt4SE-EmpiricalStudies/main/extracted_data.csv'},state={records:[]};const clean=v=>String(v??'').replace(/\r/g,'').trim(),strip=v=>clean(v).replace(/^\s*\[|\]\s*$/g,'').trim(),key=v=>String(v||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,''),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const vals=v=>clean(v).split(';').flatMap(x=>{const m=x.match(/\[([^\]]+)\]/g);return m?m.flatMap(y=>y.slice(1,-1).split(';')):[x.replace(/^\[|\]$/g,'')]}).map(x=>x.trim()).filter(x=>x&&!/^n\/a|none$/i.test(x));function csv(t){const a=[];let r=[],c='',q=false;for(let i=0;i<t.length;i++){const x=t[i];if(q){if(x==='"'&&t[i+1]==='"'){c+='"';i++}else if(x==='"')q=false;else c+=x}else if(x==='"')q=true;else if(x===','){r.push(c);c=''}else if(x==='\n'){r.push(c);a.push(r);r=[];c=''}else c+=x}if(c||r.length){r.push(c);a.push(r)}const h=a.shift().map(clean);return a.filter(r=>r.some(x=>clean(x))).map(r=>Object.fromEntries(h.map((x,i)=>[x,clean(r[i])] )))}function merge(a,b){const m=new Map(),add=(r,s)=>{if(!r.Title)return;const k=key(r.Title),i=m.get(k)||{title:r.Title,fields:{},rows:{survey:null,analysis:null}};i.rows[s]=r;Object.entries(r).forEach(([n,v])=>{if(n!=='Title'&&clean(v)&&!i.fields[n])i.fields[n]=v});m.set(k,i)};a.forEach(r=>add(r,'survey'));b.forEach(r=>add(r,'analysis'));return[...m.values()].sort((x,y)=>strip(x.fields.Year).localeCompare(strip(y.fields.Year),undefined,{numeric:true})||x.title.localeCompare(y.title))}// Only this checked-in CSV owns catalog paper links. Metadata and BibTeX
+// must never silently override a corrected or deliberately empty local link.
+const PAPER_LINKS_URL = 'paper_links.csv';
+function attachPaperLinks(records, linkRows) {
+  const index = new Map();
+  for (const row of linkRows) {
+    const title = key(row.Title);
+    if (!title) continue;
+    if (index.has(title)) throw new Error(`Duplicate title in paper_links.csv: ${row.Title}`);
+    const link = clean(row.Link);
+    if (link && !/^https?:\/\//i.test(link)) {
+      throw new Error(`Invalid paper link in paper_links.csv: ${row.Title}`);
+    }
+    index.set(title, link);
+  }
+  for (const record of records) {
+    record.paperUrl = index.get(key(record.title)) || '';
+  }
+}
+function paperLink(record) {
+  return record.paperUrl || '';
+}
+// Citations for the two companion papers are independent of catalog data.
+// Survey metadata: Crossref DOI record; analysis metadata: supplied arXiv v1 PDF.
+const sourceCitations = {
+  survey: {
+    title: 'Quantum Optimization for Software Engineering: A Survey',
+    bib: `@article{zhang2026quantum,
+  title = {Quantum Optimization for Software Engineering: A Survey},
+  author = {Zhang, Man and Li, Yuechen and Yue, Tao and Cai, Kai-Yuan},
+  journal = {ACM Transactions on Software Engineering and Methodology},
+  year = {2026},
+  doi = {10.1145/3816147},
+  url = {https://doi.org/10.1145/3816147}
+}`
+  },
+  analysis: {
+    title: 'Empirical Studies on Quantum Optimization for Software Engineering: A Systematic Analysis',
+    bib: `@misc{zhang2025empirical,
+  title = {Empirical Studies on Quantum Optimization for Software Engineering: A Systematic Analysis},
+  author = {Zhang, Man and Li, Yuechen and Yue, Tao and Cai, Kai-Yuan},
+  year = {2025},
+  eprint = {2510.27113},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.SE},
+  url = {https://arxiv.org/abs/2510.27113}
+}`
+  }
+};
+function showSourceBibtex(source) {
+  const citation = sourceCitations[source];
+  if (!citation) return;
+  document.getElementById('detail').innerHTML = `<p class="eyebrow">BibTeX</p><h2>${esc(citation.title)}</h2><div class="bib-block"><pre>${esc(citation.bib)}</pre></div><button class="copy-citation" onclick="copySourceBibtex('${source}', this)">Copy BibTeX</button><span id="copy-status" role="status"></span>`;
+  document.getElementById('modal').hidden = false;
+  document.body.classList.add('modal-open');
+  document.querySelector('.detail-close').focus();
+}
+async function copySourceBibtex(source, button) {
+  try {
+    await navigator.clipboard.writeText(sourceCitations[source].bib);
+    button.textContent = 'Copied';
+    document.getElementById('copy-status').textContent = ' Citation copied.';
+  } catch {
+    document.getElementById('copy-status').textContent = ' Select and copy the citation text above.';
+  }
+}
+function showBibtex(titleKey) {
+  const record = state.records.find(item => key(item.title) === titleKey);
+  if (!record) return;
+  const bib = record.rows.analysis?.Bib || record.rows.survey?.Bib || 'No BibTeX entry provided in the source CSVs.';
+  document.getElementById('detail').innerHTML = `<p class="eyebrow">BibTeX</p><h2>${esc(record.title)}</h2><div class="bib-block"><pre>${esc(bib)}</pre></div>`;
+  document.getElementById('modal').hidden = false;
+  document.body.classList.add('modal-open');
+  document.querySelector('.detail-close').focus();
+}
+function unique(a){return[...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,undefined,{numeric:true}))}function fill(id,a){const s=document.getElementById(id);unique(a).forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;s.appendChild(o)})}function pill(v,t){return`<span class="value-pill value-pill--${t}">${esc(v)}</span>`}function card(r, evidence=[]){const f=r.fields,k=key(r.title),l=paperLink(r);return`<article class="study-card study-card--basic"><div class="card-top"><span>${esc(strip(f.Year)||'Year n/a')}</span></div><h3>${esc(r.title)}</h3><dl class="basic-meta"><div><dt>Venue</dt><dd>${esc(strip(f.Venue)||'Venue not specified')}</dd></div></dl>${renderSearchEvidence(evidence)}<div class="basic-actions">${l?`<a href="${esc(l)}" target="_blank">Paper link -&gt;</a>`:'<span class="unavailable-link">Paper link unavailable</span>'}<button type="button" onclick="showBibtex('${k}')">BibTeX</button><button onclick="show('${k}')">View analysis -&gt;</button></div></article>`}const groups=[['Publication context',['Year','Venue','VenueType','VenueWithinSE?','Source']],['Software engineering problem',['SEActivity','SEProblem','NumOfProbObj','NumOfObj','Constraints?']],['Optimization approach',['QuantumOpType','QuantumInspired?','BaseAlgorithm','QuantuamMechanism','QuantumAlgorithm','QuantumProgramming Platform','MathematicalModel','ClassicalMannerForHybrid','QuantumComputingBackend']],['Evaluation design and metrics',['ProblemMetrics-Complexity','ProblemMetrics-Size','ApproachMetrics-Effectiveness','ApproachMetrics-Complexity','ApproachMetrics-Efficiency','ApproachMetrics-Scalability(Raw)','ApproachMetrics-DiscussScalability?','ApproachMetrics-Cost','StatisticalTests','ApproachSettings','OutputMetrics-ProblemSpecific','OutputMetrics-GeneralDiversity','OutputMetrics-QuantumSpecific','ExperimentalSettings-IndependentRepeats','ExperimentalSettings-Shots','ExperimentalSettings-QuantumNoise','ExperimentalSettings-NumberOfUsedQubits','ExperimentalSettings-TerminiationForTheApproach']],['Benchmarks and baselines',['BenchmarkLabel','NumberOfCases','BaselineName','BaselineType','NumberOfBaselines']],['Tools and research challenges',['ToolOpenSource','ToolLink','ChallengeLabel','Threats to validity']]];const labels={BaselineName:'Baseline names',BaselineType:'Baseline types',NumberOfBaselines:'Number of baselines',BenchmarkLabel:'Benchmark categories',SEActivity:'SE activity',SEProblem:'SE problem',NumOfProbObj:'Objectives in SE problem',NumOfObj:'Objectives in optimization model',QuantumOpType:'Optimization type','QuantumInspired?':'Quantum-inspired approach',BaseAlgorithm:'Classical base algorithm',QuantuamMechanism:'Quantum mechanism',QuantumAlgorithm:'Quantum algorithm','QuantumProgramming Platform':'Programming platform',MathematicalModel:'Mathematical formulation',ClassicalMannerForHybrid:'Classical component in hybrid approach',QuantumComputingBackend:'Quantum backend'};function label(n){return labels[n]||n.replace(/\?/g,'').replace(/([a-z])([A-Z])/g,'$1 $2')}// Keep values from both source rows; identical values receive the shared color.
+function metadataValues(record, field) {
+  const entries = new Map();
+  for (const source of ['survey', 'analysis']) {
+    for (const value of vals(record.rows[source]?.[field])) {
+      const normalized = value.toLowerCase();
+      const previous = entries.get(normalized);
+      if (previous && previous.source !== source) previous.source = 'both';
+      else if (!previous) entries.set(normalized, {v: value, source});
+    }
+  }
+  return [...entries.values()];
+}
+function render(record, [title, fields]) {
+  const items = fields.map(field => {
+    const values = metadataValues(record, field);
+    if (!values.length) return '';
+    return `<div class="analysis-item"><h4>${esc(label(field))}</h4><div class="value-pills">${values.map(item => pill(item.v, item.source)).join('')}</div></div>`;
+  }).join('');
+  return items ? `<section class="analysis-group"><h3>${esc(title)}</h3><div class="analysis-grid">${items}</div></section>` : '';
+}
+function show(k){const r=state.records.find(x=>key(x.title)===k),l=paperLink(r);document.getElementById('detail').innerHTML=`<div class="source-legend"><span><i class="legend-survey"></i> Survey Paper</span><span><i class="legend-analysis"></i> Analysis Paper</span><span><i class="legend-both"></i> Both sources</span></div><p class="eyebrow">Merged analysis profile</p><h2>${esc(r.title)}</h2><div class="detail-summary">${esc(strip(r.fields.Year))} · ${esc(strip(r.fields.Venue))}${l?` · <a href="${esc(l)}" target="_blank">Open paper -&gt;</a>`:''}</div>${groups.map(g=>render(r,g)).join('')}`;document.getElementById('modal').hidden=false;document.body.classList.add('modal-open');if(window.MathJax?.typesetPromise)window.MathJax.typesetPromise([document.getElementById('detail')])}// Categories reuse the analysis field inventory, so search and detail views stay aligned.
+const analysisFields = [...new Set(groups.flatMap(([, fields]) => fields))];
+const metadataCategories = [
+  {id: 'publication', title: 'Publication context', fields: groups[0][1]},
+  {id: 'se-problems', title: 'SE activities and problems', fields: groups[1][1]},
+  {id: 'optimization', title: 'Optimization methods', fields: groups[2][1].filter(field => !['QuantumProgramming Platform', 'QuantumComputingBackend'].includes(field))},
+  {id: 'platforms', title: 'Platforms and backends', fields: ['QuantumProgramming Platform', 'QuantumComputingBackend']},
+  {id: 'experiments', title: 'Experimental settings', fields: analysisFields.filter(field => field.startsWith('ExperimentalSettings-') || field === 'ApproachSettings')},
+  {id: 'metrics', title: 'Evaluation metrics', fields: analysisFields.filter(field => field.includes('Metrics-') || field === 'StatisticalTests')},
+  {id: 'benchmarks', title: 'Benchmarks and case studies', fields: ['BenchmarkLabel',  'NumberOfCases']},
+  {id: 'baselines', title: 'Baselines', fields: ['BaselineName', 'BaselineType', 'NumberOfBaselines']},
+  {id: 'tools', title: 'Tools and availability', fields: ['ToolOpenSource', 'ToolLink']},
+  {id: 'challenges', title: 'Challenges and validity', fields: ['ChallengeLabel', 'Threats to validity']}
+];
+Object.assign(labels, {
+  'ExperimentalSettings-IndependentRepeats': 'Independent repetitions',
+  'ExperimentalSettings-Shots': 'Measurement shots',
+  'ExperimentalSettings-QuantumNoise': 'Quantum noise',
+  'ExperimentalSettings-NumberOfUsedQubits': 'Qubit counts',
+  'ExperimentalSettings-TerminiationForTheApproach': 'Termination criteria',
+  ApproachSettings: 'Algorithm parameters and settings',
+  'ProblemMetrics-Complexity': 'Problem complexity metrics',
+  'ProblemMetrics-Size': 'Problem size metrics',
+  'ApproachMetrics-Effectiveness': 'Effectiveness metrics',
+  'ApproachMetrics-Complexity': 'Computational complexity',
+  'ApproachMetrics-Efficiency': 'Efficiency metrics',
+  'ApproachMetrics-Scalability(Raw)': 'Scalability evaluation',
+  'ApproachMetrics-DiscussScalability?': 'Scalability discussion',
+  'ApproachMetrics-Cost': 'Cost metrics',
+  'OutputMetrics-ProblemSpecific': 'Problem-specific output metrics',
+  'OutputMetrics-GeneralDiversity': 'General and diversity metrics',
+  'OutputMetrics-QuantumSpecific': 'Quantum-specific metrics',
+  StatisticalTests: 'Statistical tests', NumberOfCases: 'Number of cases',
+  ToolOpenSource: 'Tool availability', ToolLink: 'Tool links',
+  ChallengeLabel: 'Research challenges', 'VenueWithinSE?': 'SE venue'
+});
+// Search the same curated fields that appear in the analysis dialog, rather
+// than internal selection flags or citation syntax. Field names are searchable too.
+function selectedMetadataFields(scope) {
+  if (scope === 'title') return [];
+  const category = metadataCategories.find(item => item.id === scope);
+  if (category) return category.fields;
+  const fields = [...new Set(groups.flatMap(([, names]) => names))];
+  return scope === 'all' ? fields : fields.filter(field => field === scope);
+}
+function searchEvidence(record, scope, query) {
+  const evidence = [];
+  for (const field of selectedMetadataFields(scope)) {
+    const values = metadataValues(record, field);
+    const fieldMatches = `${field} ${label(field)}`.toLowerCase().includes(query);
+    const matches = values.filter(item => !query || fieldMatches || item.v.toLowerCase().includes(query));
+    if (matches.length) evidence.push({field, values: matches});
+  }
+  return evidence;
+}
+function renderSearchEvidence(evidence) {
+  if (!evidence.length) return '';
+  return `<section class="search-evidence" aria-label="Matching metadata">${evidence.map(({field, values}) => `<div class="search-evidence-row"><h4>${esc(label(field))}</h4><div class="value-pills">${values.map(item => pill(item.v, item.source)).join('')}</div></div>`).join('')}</section>`;
+}
+function populateMetadataSearch() {
+  const select = document.getElementById('metadata-field');
+  const categories = document.createElement('optgroup');
+  categories.label = 'Browse a metadata category';
+  for (const category of metadataCategories) {
+    const option = document.createElement('option');
+    option.value = category.id;
+    option.textContent = category.title;
+    categories.appendChild(option);
+  }
+  select.appendChild(categories);
+  for (const [title, fields] of groups) {
+    const group = document.createElement('optgroup');
+    group.label = title;
+    for (const field of fields) {
+      const option = document.createElement('option');
+      option.value = field;
+      option.textContent = label(field);
+      group.appendChild(option);
+    }
+    select.appendChild(group);
+  }
+}
+// Retain user column widths when filtering, sorting, or switching metadata.
+const tableColumnWidths = [280, 110, 85, 200, 390];
+function enableColumnResize() {
+  const table = document.querySelector('.metadata-table');
+  if (!table) return;
+  const columns = table.querySelectorAll('col');
+  const resize = (index, width) => {
+    tableColumnWidths[index] = Math.max(70, Math.round(width));
+    columns[index].style.width = `${tableColumnWidths[index]}px`;
+    table.style.width = `${tableColumnWidths.reduce((sum, value) => sum + value, 0)}px`;
+    table.querySelector(`[data-column="${index}"]`).setAttribute('aria-valuenow', tableColumnWidths[index]);
+  };
+  for (const handle of table.querySelectorAll('.column-resizer')) {
+    const index = Number(handle.dataset.column);
+    handle.setAttribute('aria-valuemin', '70');
+    handle.setAttribute('aria-valuenow', tableColumnWidths[index]);
+    handle.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      resize(index, tableColumnWidths[index] + (event.key === 'ArrowRight' ? 20 : -20));
+    });
+    handle.addEventListener('pointerdown', event => {
+      if (event.button !== 0) return;
+      event.preventDefault();
+      const startX = event.clientX;
+      const startWidth = tableColumnWidths[index];
+      handle.setPointerCapture(event.pointerId);
+      document.body.classList.add('resizing-column');
+      const move = next => resize(index, startWidth + next.clientX - startX);
+      const stop = () => {
+        document.body.classList.remove('resizing-column');
+        handle.removeEventListener('pointermove', move);
+        handle.removeEventListener('pointerup', stop);
+        handle.removeEventListener('pointercancel', stop);
+        handle.removeEventListener('lostpointercapture', stop);
+      };
+      handle.addEventListener('pointermove', move);
+      handle.addEventListener('pointerup', stop);
+      handle.addEventListener('pointercancel', stop);
+      handle.addEventListener('lostpointercapture', stop);
+    });
+  }
+}
+// Table columns describe the publication; the final column contains all
+// values of the selected metadata, even when a keyword matched only one value.
+function publicationCell(record, field) {
+  const values = metadataValues(record, field);
+  return values.length ? values.map(item => esc(item.v)).join('<br>') : '<span class="missing-value">Not reported</span>';
+}
+function renderMetadataTable(matches, scope) {
+  const selectedLabel = metadataCategories.find(item => item.id === scope)?.title || label(scope);
+  const rows = matches.map(({record}) => {
+    const link = paperLink(record);
+    const evidence = searchEvidence(record, scope, '');
+    return `<tr><th scope="row"><button class="table-title" onclick="show('${key(record.title)}')">${esc(record.title)}</button><button class="table-bibtex" onclick="showBibtex('${key(record.title)}')">BibTeX</button></th><td>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener">Open paper</a>` : '<span class="missing-value">Unavailable</span>'}</td>${['Year', 'Venue'].map(field => `<td>${publicationCell(record, field)}</td>`).join('')}<td class="table-metadata">${renderSearchEvidence(evidence)}</td></tr>`;
+  }).join('');
+  return `<table class="metadata-table" style="width:${tableColumnWidths.reduce((sum, width) => sum + width, 0)}px"><caption>Studies compared by ${esc(selectedLabel)}</caption><colgroup>${tableColumnWidths.map(width => `<col style="width:${width}px">`).join('')}</colgroup><thead><tr>${['Title', 'Paper link', 'Year', 'Venue', selectedLabel].map((title, index) => `<th scope="col">${esc(title)}<span class="column-resizer" role="separator" tabindex="0" aria-orientation="vertical" aria-label="Resize ${esc(title)} column" data-column="${index}"></span></th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+function sortByYear(matches, direction) {
+  const year = record => {
+    const value = strip(record.fields.Year).match(/\b\d{4}\b/);
+    return value ? Number(value[0]) : null;
+  };
+  return matches.sort((a, b) => {
+    const left = year(a.record), right = year(b.record);
+    if (left === null && right !== null) return 1;
+    if (right === null && left !== null) return -1;
+    return (left - right) * (direction === 'desc' ? -1 : 1) || a.record.title.localeCompare(b.record.title);
+  });
+}
+function apply() {
+  const query = document.getElementById('search').value.toLowerCase().trim();
+  const scope = document.getElementById('metadata-field').value;
+  const year = document.getElementById('year').value;
+  const venue = document.getElementById('venue').value;
+  const type = document.getElementById('type').value;
+  const venueType = document.getElementById('venue-type').value;
+  const matches = [];
+  for (const record of state.records) {
+    if (year && strip(record.fields.Year) !== year) continue;
+    if (venue && strip(record.fields.Venue) !== venue) continue;
+    if (type && !vals(record.fields.QuantumOpType).includes(type)) continue;
+    if (venueType && !vals(record.fields.VenueType).includes(venueType)) continue;
+    // With no search, preserve the compact publication cards. A selected
+    // metadata field instead lists all studies that report values in that field.
+    const evidence = query || !['all', 'title'].includes(scope) ? searchEvidence(record, scope, query) : [];
+    const titleMatch = ['all', 'title'].includes(scope) && (!query || record.title.toLowerCase().includes(query));
+    if (titleMatch || evidence.length) matches.push({record, evidence});
+  }
+  const tableMode = !['all', 'title'].includes(scope);
+  sortByYear(matches, document.getElementById('year-order').value);
+  document.getElementById('cards').hidden = tableMode;
+  document.getElementById('table-view').hidden = !tableMode;
+  document.getElementById('cards').innerHTML = tableMode ? '' : matches.map(({record, evidence}) => card(record, evidence)).join('');
+  document.getElementById('table-results').innerHTML = tableMode ? renderMetadataTable(matches, scope) : '';
+  if (tableMode) enableColumnResize();
+  document.getElementById('empty').hidden = matches.length > 0;
+  document.getElementById('result-count').textContent = `${matches.length} of ${state.records.length} studies`;
+}
+// Count each merged study once per value, retaining values from both sources.
+function countStudyMetadata(field) {
+  const counts = new Map();
+  for (const record of state.records) {
+    for (const {v} of metadataValues(record, field)) {
+      const normalized = v.toLowerCase();
+      const entry = counts.get(normalized) || {label: v, count: 0};
+      entry.count += 1;
+      counts.set(normalized, entry);
+    }
+  }
+  return [...counts.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label)).map(entry => [entry.label, entry.count]);
+}
+function bars(id,a){const m=Math.max(...a.map(x=>x[1]),1);document.getElementById(id).innerHTML=a.map(([n,c])=>`<div class="bar-row"><span class="bar-label">${esc(n)}</span><span class="bar-track"><span class="bar-fill" style="width:${Math.max(5,c/m*100)}%"></span></span><strong>${c}</strong></div>`).join('')}async function loadCsv(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`CSV request failed: ${response.status}`);
+  return csv(await response.text());
+}
+Promise.all([loadCsv(URLS.survey), loadCsv(URLS.analysis), loadCsv(PAPER_LINKS_URL)])
+.then(([surveyRows, analysisRows, linkRows]) => {
+  state.records = merge(surveyRows, analysisRows);
+  attachPaperLinks(state.records, linkRows);
+  const linked = state.records.filter(record => paperLink(record)).length;
+  document.getElementById('status').textContent = `${state.records.length} studies; ${linked} paper links from local CSV`;
+fill('year',state.records.map(r=>strip(r.fields.Year)));fill('venue',state.records.map(r=>strip(r.fields.Venue)));fill('type',state.records.flatMap(r=>vals(r.fields.QuantumOpType)));fill('venue-type',state.records.flatMap(r=>vals(r.fields.VenueType)));const y={};state.records.forEach(r=>{const n=strip(r.fields.Year)||'Unknown';y[n]=(y[n]||0)+1});bars('year-chart',Object.entries(y));const count=n=>Object.entries(state.records.flatMap(r=>vals(r.fields[n])).reduce((x,v)=>(x[v]=(x[v]||0)+1,x),{}));bars('type-chart',count('QuantumOpType'));bars('algorithm-chart',count('QuantumAlgorithm'));bars('venue-chart',countStudyMetadata('Venue'));bars('activity-chart',countStudyMetadata('SEActivity'));apply()}).catch(e=>{document.getElementById('status').textContent='CSV loading failed';document.getElementById('cards').innerHTML=`<p class="empty">${esc(e.message)}</p>`});populateMetadataSearch();document.getElementById('clear-search').addEventListener('click',()=>{document.getElementById('search').value='';document.getElementById('metadata-field').value='all';apply()});['search','metadata-field','year-order','year','venue','type','venue-type'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',apply));document.querySelectorAll('[data-close]').forEach(x=>x.addEventListener('click',()=>{document.getElementById('modal').hidden=true;document.body.classList.remove('modal-open')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('modal').hidden=true;document.body.classList.remove('modal-open')}});</script></body></html>

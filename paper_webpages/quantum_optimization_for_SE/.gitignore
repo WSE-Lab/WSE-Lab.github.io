@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node / static-server caches (if used)
+node_modules/
+.cache/
+.tmp/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local previews / generated
+/dist/
+/build/
+.serve-cache/
+
+# Reference material kept locally, not part of the project
+/tmp/
+

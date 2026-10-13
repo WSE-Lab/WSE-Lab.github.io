@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.modelcopilot.org/paper_webpages/quantum_optimization_for_SE/docs/sitemap.xml
