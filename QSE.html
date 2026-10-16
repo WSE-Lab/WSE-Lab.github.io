@@ -325,7 +325,7 @@
     /* Project cards (hub) */
     .project-grid {
       display: grid;
-      grid-template-columns: minmax(320px, 370px);
+      grid-template-columns: repeat(2, minmax(320px, 370px));
       gap: 2rem;
       margin-top: 3rem;
       justify-content: center;
@@ -366,6 +366,18 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
+    }
+
+    .project-card-media.qopt-media {
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .qopt-media img {
+      width: 108%;
+      max-width: none;
+      margin-left: -4%;
+      object-fit: cover;
     }
 
     .project-tag {
@@ -486,6 +498,7 @@
 
     @media (max-width: 760px) {
       .publication-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: minmax(320px, 370px); }
     }
 
     @media (max-width: 640px) {
@@ -559,7 +572,23 @@
               <span class="project-card-link">Explore IsingBench →</span>
             </div>
           </a>
+          <a href="paper_webpages\quantum_optimization_for_SE\index.html" class="project-card">
+            <div class="project-card-media qopt-media">
+              <img src="imgs/QOpt4SE.png"
+                  alt="Quantum optimization for SE screenshot"
+                  style="object-position: 50% 50%;">
+              <!-- <span class="project-tag">▶ Demo</span> -->
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title">Survey and Analysis of Quantum Optimization for Software Engineering</h3>
+              <p class="project-card-desc">
+                A webpage to visualize the data and findings of our survey and analysis on quantum optimization for software engineering.  
+              </p>
+              <span class="project-card-link">Explore the webpage →</span>
+            </div>
+          </a>
         </div>
+
 
         <div class="publications-section">
           <h2 class="section-title" id="publications-title">Publications</h2>
