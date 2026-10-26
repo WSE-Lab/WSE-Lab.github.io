@@ -83,7 +83,7 @@ def main():
         def load(query=""):
             call("Page.navigate", {"url": (SITE / "catalog.html").as_uri() + query})
             for _ in range(150):
-                if js("document.querySelectorAll('.filter-field-choice').length") == 38:
+                if js("document.querySelectorAll('.filter-field-choice').length") == 37:
                     break
                 time.sleep(.1)
             assert js("window.checkErrors") == [], js("window.checkErrors")
@@ -140,7 +140,9 @@ def main():
         assert js("window.checkErrors") == [], js("window.checkErrors")
         print("PASS: overview wording, all taxonomy/Findings tabs, 27 chart counts, 43 model types, modals and 320–1440px layouts")
         load()
-        assert count() == 235 and len(columns()) == 31
+        assert count() == 235 and len(columns()) == 30
+        assert "BibTex" not in columns()
+        assert not js("document.querySelector('[value=\"field:BibTex\"],[data-field=\"BibTex\"]')")
         assert js("getComputedStyle(document.querySelector('.catalog-stat:last-child strong')).color===getComputedStyle(document.querySelector('.catalog-stat:first-child strong')).color")
         stats_query = js("new URL(document.querySelector('.catalog-stat:last-child').href).search")
         load(stats_query)
@@ -220,6 +222,8 @@ def main():
         assert js("document.querySelectorAll('.catalog-metric-card').length") > 0
         click(".study-title")
         assert js("document.getElementById('study-dialog').open")
+        assert not js("document.querySelector('#study-detail .bibtex-block,#study-detail .detail-bib-actions')")
+        assert not js("document.getElementById('study-detail').textContent.includes('Copy BibTeX')")
         assert not js("[...document.querySelectorAll('#study-detail dt')].some(x=>x.textContent.includes('mapping'))")
         click("#study-dialog .dialog-close")
         click("#cards-view-button")
@@ -270,7 +274,7 @@ def main():
         select("#search-scope", "group:scope")
         assert "RQ4 SETask" in columns() and "RQ8 FoundationLLMFamiliy" not in columns() and count() == before
         select("#search-scope", "all")
-        assert len(columns()) == 31 and count() == before
+        assert len(columns()) == 30 and count() == before
         click("#columns-summary")
         assert js("!document.getElementById('columns-picker').hidden && document.getElementById('columns-summary').getAttribute('aria-expanded')==='true'")
         click("#columns-summary")

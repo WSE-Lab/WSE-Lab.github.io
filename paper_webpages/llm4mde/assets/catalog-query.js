@@ -52,16 +52,16 @@
       'RQ10 EnhancementTechnique':'enhancement', 'RQ12 InteractionPattern':'interaction', 'RQ15 Baseline':'baselines'
     };
     const fieldGroups = [
-      {key:'identity', name:'Study information', fields:['ID', 'Title', 'BibTex']},
+      {key:'identity', name:'Study information', fields:['ID', 'Title']},
       ...Object.entries(groups).map(([key, group]) => ({key, name:group.name, fields:group.fields.filter(field => fields.includes(field))}))
     ];
     const specs = fields.map(field => ({field, name:names[field],
-      type:field === 'RQ1 Year' ? 'year' : field.endsWith('Link') ? 'link' : ['ID','Title','BibTex'].includes(field) ? 'text' : 'category',
-      multi:!['ID','Title','BibTex','RQ1 Year','RQ2 Venue','RQ3 VenueType','RQ3 PaperType'].includes(field),
+      type:field === 'RQ1 Year' ? 'year' : field.endsWith('Link') ? 'link' : ['ID','Title'].includes(field) ? 'text' : 'category',
+      multi:!['ID','Title','RQ1 Year','RQ2 Venue','RQ3 VenueType','RQ3 PaperType'].includes(field),
       values:study => {
         if (field === 'RQ14 EffectivenessMetric') return unique(metricEntries(study.raw[field]).map(metric => metric.name));
         if (facets[field]) return unique(study.facets[facets[field]].map(value => value.trim()));
-        if (['ID','Title','BibTex','RQ1 Year','RQ2 Venue','RQ3 VenueType','RQ3 PaperType'].includes(field)) return [display(study.raw[field])].filter(Boolean);
+        if (['ID','Title','RQ1 Year','RQ2 Venue','RQ3 VenueType','RQ3 PaperType'].includes(field)) return [display(study.raw[field])].filter(Boolean);
         return tokens(study.raw[field], display);
       }
     }));

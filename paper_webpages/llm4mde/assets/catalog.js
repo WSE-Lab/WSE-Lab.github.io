@@ -1,10 +1,10 @@
 (function () {
   'use strict';
   const D = window.LLM4MDE_DATA;
-  const {el, link, copy, download, safeUrl, toast, authorText} = window.Site;
+  const {el, link, download, safeUrl, toast, authorText} = window.Site;
   const $ = id => document.getElementById(id);
   const fieldNames = {
-    'ID':'ID', 'BibTex':'BibTeX',
+    'ID':'ID',
     'Title':'Title', 'RQ1 Year':'Year', 'RQ2 Venue':'Venue', 'RQ3 VenueType':'Venue type', 'RQ3 PaperType':'Paper type',
     'RQ4 SEActivity':'SE activities', 'RQ4 SETask':'SE tasks', 'RQ5 MDETask':'MDE tasks', 'RQ5 SETaskMDETask':'SE task–MDE task mapping',
     'RQ6 ModelingLanguage':'Modeling languages', 'RQ6 ModelType':'Model types', 'RQ6 ModelingLanguageModelType':'Language–model type mapping', 'RQ7 ApplicationDomain':'Application domains',
@@ -16,7 +16,7 @@
     'RQ16 AvailableComponents':'Available replication materials', 'RQ16 SourceCodeLink':'Source code links', 'RQ16 PromptLink':'Prompt links', 'RQ16 EvaluationSubjectLink':'Evaluation subject links', 'RQ16 EnhancedLLMLink':'Enhanced LLM links'
   };
   const mappingFields = new Set(['RQ5 SETaskMDETask', 'RQ6 ModelingLanguageModelType', 'RQ14 MDETaskMetric', 'RQ15 MDETaskBaseline']);
-  const excludedComparisonFields = new Set([...mappingFields, 'RQ16 AvailableComponents']);
+  const excludedComparisonFields = new Set([...mappingFields, 'RQ16 AvailableComponents', 'BibTex']);
   const comparisonFields = D.fields.filter(field => !excludedComparisonFields.has(field));
   function displayValue(value) {
     const source = String(value ?? '');
@@ -191,10 +191,7 @@
         grid.append(el('div',{class:'detail-field'+(wide?' wide':'')},[el('dt',{text:fieldNames[field]}),value]));
       }); body.append(grid);
     });
-    body.append(el('h3',{text:'Citation · '+s.key}),el('pre',{class:'bibtex-block',text:s.raw.BibTex}));
-    const copyBib = el('button',{class:'button small','data-icon':'copy',text:'Copy BibTeX'}); copyBib.addEventListener('click',()=>copy(s.raw.BibTex));
-    const saveBib = el('button',{class:'button small','data-icon':'save',text:'Download .bib'}); saveBib.addEventListener('click',()=>download(s.key+'.bib',s.raw.BibTex));
-    body.append(el('div',{class:'detail-bib-actions'},[copyBib,saveBib])); $('study-detail').replaceChildren(header,body);
+    $('study-detail').replaceChildren(header,body);
     if (!dialog.open) dialog.showModal(); dialog.scrollTop = 0; if (updateUrl) writeUrl();
   }
   dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
