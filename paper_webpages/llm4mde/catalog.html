@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Study Catalog — LLMs for Model-driven Engineering</title>
+  <meta name="description" content="Search, filter, compare and export classifications for all 235 primary studies in the LLM4MDE survey."><meta name="theme-color" content="#1a7cff">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/wselab-theme.css">
+  <script src="assets/wselab-theme.js" defer></script>
+  <script src="assets/data.js" defer></script><script src="assets/definitions.js" defer></script><script src="assets/core.js" defer></script><script src="assets/catalog-query.js" defer></script><script src="assets/catalog.js" defer></script>
+</head><body>
+<a class="skip" href="#main">Skip to catalog</a>
+<header class="navbar">
+    <div class="container navbar-container">
+      <a href="../../index.html" class="navbar-logo">WSELab</a>
+      <nav class="navbar-links" id="lab-navigation" aria-label="Main navigation">
+        <a href="../../index.html#about" class="navbar-link">About</a>
+        <a href="../../index.html#research" class="navbar-link">Research</a>
+        <a href="../../news.html" class="navbar-link">News</a>
+        <a href="../../model-copilot.html" class="navbar-link">ModelCopilot</a>
+        <a href="../../mde-uncertainty.html" class="navbar-link active" aria-current="location">MDE &amp; Uncertainty</a>
+        <a href="../../QSE.html" class="navbar-link">QSE</a>
+        <a href="../../ADS.html" class="navbar-link">ADS</a>
+        <a href="../../index.html#team" class="navbar-link">Team</a>
+        <a href="../../index.html#contact" class="navbar-link">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation" aria-controls="lab-navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+<nav class="paper-nav" aria-label="Paper navigation"><div class="container paper-nav-inner"><a class="paper-brand" href="index.html">LLM4MDE</a><div class="paper-nav-links"><a href="index.html#overview">Overview</a><a href="index.html#collection">Study collection</a><a href="index.html#taxonomy">Taxonomy</a><a href="index.html#findings">Findings</a><a href="index.html#roadmap">Roadmap</a><a href="catalog.html" class="paper-catalog" aria-current="page">Study catalog</a></div></div></nav>
+<main id="main" class="wrap">
+  <section class="catalog-hero" aria-labelledby="catalog-title"><p class="breadcrumbs"><a href="index.html">Research overview</a> <span aria-hidden="true"> / </span> Study catalog</p><div class="catalog-title-row"><div><p class="eyebrow">Explore the evidence</p><h1 id="catalog-title">Study Catalog</h1></div><a class="button" href="downloads/final_selection.csv" download data-icon="save">Full dataset CSV</a></div><p class="intro">Search and compare the 235 primary studies by bibliometric analysis, application scope, technical characterization, and evaluation practices. Open a study to inspect its classifications, citation, and available artifacts.</p><div class="catalog-stats" aria-label="Paper types"><a class="catalog-stat" href="catalog.html"><strong>235</strong><span>All studies</span></a><a class="catalog-stat" href="catalog.html?paperType=Proposed+method"><strong>159</strong><span>Proposed methods</span></a><a class="catalog-stat" href="catalog.html?paperType=Benchmarking+and+evaluation"><strong>57</strong><span>Benchmarking and evaluation</span></a><a class="catalog-stat" href="catalog.html?paperType=New+idea+or+vision&amp;paperType=Tool+demo"><strong>19</strong><span>15 visions + 4 tool demos</span></a></div></section>
+  <section class="catalog-main" aria-label="Search and results">
+    <div class="catalog-toolbar">
+      <div class="search-row"><div class="control"><label for="search-scope">Search in</label><select id="search-scope" aria-describedby="search-help"></select></div><div class="control"><label for="search-input">Search studies</label><input id="search-input" type="search" placeholder="Search titles, methods, languages, or a study ID..." aria-describedby="search-help" autocomplete="off"></div><button class="button" id="columns-summary" aria-expanded="false" aria-controls="columns-picker">Columns</button><button class="button" id="reset-filters" data-icon="reset">Reset all</button></div>
+<div id="columns-picker" class="columns-panel" hidden><div class="query-picker-panel"><div class="column-controls"><div class="control"><label for="column-preset">Choose an aspect</label><select id="column-preset"></select></div><div class="control"><label for="column-search">Find a column</label><input id="column-search" type="search" placeholder="Search column names..."></div></div><p class="search-help">ID, Year and Study stay visible. Changing columns does not change your results.</p><div id="column-options"></div></div></div>
+      <p class="search-help" id="search-help">Search a field or aspect to show its columns, then use Columns to customize. Filters are combined; all search words must match.</p>
+      <div class="query-tools">
+        <details id="filter-picker" class="query-picker"><summary class="button" data-icon="plus">Add filter</summary><div class="query-picker-panel"><label class="sr-only" for="filter-field-search">Find a filter field</label><input id="filter-field-search" type="search" placeholder="Find a field..."><div id="filter-field-options"></div><p id="filter-picker-empty" hidden>No matching fields.</p></div></details>
+        <button class="button" id="clear-filters" hidden>Clear filters</button>
+      </div>
+      <p id="filter-logic" class="search-help" hidden>Different fields must all match. Within a field, choose Match any or Match all. Value counts reflect the other active filters.</p>
+      <div id="filter-conditions" class="query-filters" aria-label="Active field filters"></div>
+    </div>
+    <div class="results-bar"><p id="result-count" class="result-count" role="status" aria-live="polite">Loading 235 studies…</p><div class="results-controls"><div class="view-switch" aria-label="Results layout"><button id="table-view-button" aria-pressed="true" data-icon="table">Table</button><button id="cards-view-button" aria-pressed="false" data-icon="catalog">Cards</button></div><label class="sr-only" for="sort-order">Sort order</label><select id="sort-order"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option><option value="id">Study ID</option></select><button class="button small" id="export-results" data-icon="save">Export results</button></div></div>
+    <p id="table-help" class="table-help">Open a title for full details. Drag a header divider to resize columns, or focus it and use the arrow keys. Scroll horizontally for additional fields.</p>
+    <div class="table-scroll" id="table-container" role="region" aria-label="Study comparison table" tabindex="0"></div><div class="study-cards" id="cards-container" hidden></div>
+    <div class="empty-state" id="empty-state" hidden><h3>No matching studies.</h3><p>Try a broader keyword or remove one of the active filters.</p><button class="button" id="empty-reset" data-icon="reset">Reset all filters</button></div>
+    <div class="pagination" id="pagination"><div><label for="page-size">Studies per page </label><select id="page-size"><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></div><div class="page-buttons"><button id="previous-page">Previous</button><span class="page-number" id="page-number"></span><button id="next-page">Next</button></div></div>
+    <div class="catalog-notes"><p><strong>Reading the catalog.</strong> IDs are the original dataset IDs, not the paper’s reference numbers. Use the <a href="downloads/index_reference.pdf" target="_blank" rel="noopener" data-icon="save">ID–reference index</a> to cross-reference the manuscript. Multi-label studies can appear under several filters.</p><p>Missing table values are shown as <code>/</code>. Colored metric tags identify each classification dimension. The full catalog includes all paper types; select <em>Proposed method</em> to match the paper’s application-scope and technical analyses.</p></div>
+  </section>
+</main>
+<footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">WSELab</div>
+          <p class="footer-description">
+            We advance SE with insight-driven design to build software that redefines what's possible.
+          </p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li class="footer-item"><a href="../../index.html#about" class="footer-link">About</a></li>
+            <li class="footer-item"><a href="../../index.html#research" class="footer-link">Research</a></li>
+            <li class="footer-item"><a href="../../news.html" class="footer-link">News</a></li>
+            <li class="footer-item"><a href="../../model-copilot.html" class="footer-link">ModelCopilot</a></li>
+            <li class="footer-item"><a href="../../index.html#team" class="footer-link">Team</a></li>
+            <li class="footer-item"><a href="../../index.html#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 WSE Laboratory. All rights reserved.</p>
+        <p>All research materials including videos are protected intellectual property.</p>
+      </div>
+    </div>
+  </footer>
+<dialog id="study-dialog" class="study-dialog" aria-labelledby="detail-title"><button class="dialog-close" aria-label="Close study details">×</button><div id="study-detail"></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div><noscript><p class="noscript">Enable JavaScript to search the catalog, or <a href="downloads/final_selection.csv" data-icon="save">download all 235 studies as CSV</a>.</p></noscript>
+</body></html>

@@ -1,0 +1,25 @@
+{
+  "manuscript": "camera-ready/camera-ready-submitted",
+  "dataset_sha256": "a062c467022ea1039361a9301460123edbd0ef12f831dc72d09589e580127e5f",
+  "sources": {
+    "content.tex": "30d18b64b0b4b538ffdfee1ddf7a896f8d9707e0198d0657cd8d383f08288a6a",
+    "generated_files/collection_statistics.tex": "7e79dccca893f524259a478a9523554c92f493f921a74f5b99bba3c382edc467",
+    "generated_files/RQ1_plot_num_publications_over_year.pdf": "3581c0a041c4165a3a1a7607d37be7d15bd60af3e5408859b7a6e91ad21c1336",
+    "generated_files/RQ2_venue.tex": "e285aec39caab5c26796894dd4891599cb90fcd2834e0c1b3a73a8892e54840a",
+    "generated_files/RQ5_MDE_tasks.pdf": "a025b9b1a4708c572d5472b66e4b0063e643bef59ded9af92bc8c6738b90e0dd",
+    "generated_files/RQ5_se.tex": "480ae7f564874c7f8fd0f68e04ce35d66ae54be9c8f2e19bba4034ff7141d2fd",
+    "generated_files/RQ4_model_type_category.tex": "79269093c078bef8bb6cef7247a337a187ef7e426f073702f70991d60818e328",
+    "generated_files/RQ4_modeling_language.pdf": "e463339cfffa28450787e3ff2217218f974da4a7069785f3391329fd190a77f9",
+    "generated_files/RQ7_application_domain.tex": "ae6958d8a099d0bbede9b6113799ace719ca41cc068db3d3ad8adecaa2cad2a3",
+    "generated_files/RQ8_llm_version_size.tex": "35d0c206746628a68c075ae8f574de3f39012ea25b13414585329aec2b046cf3",
+    "generated_files/RQ9_prompt_technique_complex_upset.pdf": "823ddc4d0e58aa3f9e51b76859f99fdc8acf366f62301164bf3bf188527bf472",
+    "generated_files/RQ12_human_in_the_loop_summary.tex": "eba673b3688ce899c6d28c64da7698cf9de28d660ba5f83a91f6dad4cc0fdd80",
+    "generated_files/RQ13_proposed_vs_benchmark_mde_task_coverage.tex": "cfff3269a3726f990f96d42516a43d231662fd640c1686a35f0f6335a76127bd",
+    "generated_files/RQ13_metrics_semantic.tex": "6f65824bdc306d062f102867ff77970ad03df218338aaee445265f2ca5e5fa76",
+    "generated_files/RQ13_metrics_nonsemantic.tex": "cdaf694a33d20c01a2c2975895c890f869efa50e93d10ed999b86c0aafebc0ca",
+    "generated_files/RQ13_cost_metrics.tex": "ca626945720e669f5af2989cdc54c92f3ac66e18e2302110ce417b32110e3694",
+    "generated_files/RQ14_baselines.tex": "633236c8fe4d0a3237dbabcd60b58390457e5e6cb6f703bb9636d3f1531dafe5"
+  },
+  "charts": 27,
+  "validation": "Chart counts checked against manuscript figures, table citations, and reported totals. Study sets deduplicated within each category."
+}

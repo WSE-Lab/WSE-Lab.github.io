@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LLMs for Model-driven Engineering — Survey &amp; Study Catalog</title>
+  <meta name="description" content="Explore 235 studies of LLM-based model-driven engineering: 25 MDE tasks, seven model categories, LLM techniques, evaluation practices, and a searchable research catalog.">
+  <meta name="theme-color" content="#1a7cff">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/wselab-theme.css">
+  <script src="assets/wselab-theme.js" defer></script>
+  <script src="assets/data.js" defer></script><script src="assets/definitions.js" defer></script><script src="assets/core.js" defer></script><script src="assets/home.js" defer></script><script src="assets/findings-data.js" defer></script><script src="assets/findings.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="navbar">
+    <div class="container navbar-container">
+      <a href="../../index.html" class="navbar-logo">WSELab</a>
+      <nav class="navbar-links" id="lab-navigation" aria-label="Main navigation">
+        <a href="../../index.html#about" class="navbar-link">About</a>
+        <a href="../../index.html#research" class="navbar-link">Research</a>
+        <a href="../../news.html" class="navbar-link">News</a>
+        <a href="../../model-copilot.html" class="navbar-link">ModelCopilot</a>
+        <a href="../../mde-uncertainty.html" class="navbar-link active" aria-current="location">MDE &amp; Uncertainty</a>
+        <a href="../../QSE.html" class="navbar-link">QSE</a>
+        <a href="../../ADS.html" class="navbar-link">ADS</a>
+        <a href="../../index.html#team" class="navbar-link">Team</a>
+        <a href="../../index.html#contact" class="navbar-link">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation" aria-controls="lab-navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+<nav class="paper-nav" aria-label="Paper navigation"><div class="container paper-nav-inner"><a class="paper-brand" href="index.html">LLM4MDE</a><div class="paper-nav-links"><a href="#overview">Overview</a><a href="#collection">Study collection</a><a href="#taxonomy">Taxonomy</a><a href="#findings">Findings</a><a href="#roadmap">Roadmap</a><a href="catalog.html" class="paper-catalog">Study catalog</a></div></div></nav>
+<main id="main">
+<section class="hero" aria-labelledby="paper-title"><div class="wrap">
+  <h1 id="paper-title">LLMs for Model-driven Engineering</h1>
+  <p class="hero-subtitle">A Systematic Literature Review</p>
+  <div class="actions">
+    <a class="button primary" href="https://dl.acm.org/doi/10.1145/3859883" target="_blank" rel="noopener noreferrer"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Read the paper</span></a>
+    <a class="button" href="catalog.html"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Explore the study catalog</span></a>
+    <a class="button" href="https://github.com/WSE-Lab/LLM4MDE" target="_blank" rel="noopener noreferrer"><svg class="button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .75a11.25 11.25 0 0 0-3.558 21.923c.563.105.768-.244.768-.542 0-.267-.01-.975-.015-1.914-3.13.68-3.79-1.508-3.79-1.508-.512-1.3-1.25-1.646-1.25-1.646-1.022-.699.078-.685.078-.685 1.13.08 1.725 1.16 1.725 1.16 1.005 1.723 2.635 1.225 3.278.937.103-.728.394-1.225.716-1.507-2.498-.284-5.124-1.25-5.124-5.563 0-1.23.44-2.234 1.16-3.022-.116-.285-.503-1.43.11-2.98 0 0 .945-.303 3.095 1.155A10.787 10.787 0 0 1 12 6.18c.956.004 1.918.129 2.817.378 2.148-1.458 3.091-1.155 3.091-1.155.615 1.55.228 2.695.113 2.98.722.788 1.158 1.792 1.158 3.022 0 4.324-2.63 5.276-5.136 5.554.404.35.765 1.042.765 2.1 0 1.516-.014 2.739-.014 3.112 0 .3.203.652.774.541A11.251 11.251 0 0 0 12 .75z"/></svg><span>Data &amp; artifacts</span></a>
+    <a class="button" href="#citation"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3M7 5v14M12 6h8M12 10h6M12 14h8M12 18h6"/></svg><span>Cite this work</span></a>
+  </div>
+  <p class="hero-summary">What can LLMs do for MDE, how are they used, and how well are they evaluated? A systematic review of application scope, technical characterization, and evaluation practices.</p>
+  <div class="snapshot" aria-label="Survey at a glance"><div class="snapshot-item"><strong>3,412</strong><span>Initial search</span></div><div class="snapshot-item"><strong>5</strong><span>Databases</span></div><div class="snapshot-item"><strong>235</strong><span>Primary studies</span></div><div class="snapshot-item"><strong>Oct 2025</strong><span>Final collection update</span></div></div>
+</div></section>
+<section class="section" id="overview"><div class="wrap">
+  <div class="abstract-layout"><div><p class="eyebrow">About the paper</p><h2>Abstract</h2><div class="abstract-meta">Published in <em>ACM Transactions on Software Engineering and Methodology</em>.<br><a href="https://doi.org/10.1145/3859883" target="_blank" rel="noopener noreferrer">doi:10.1145/3859883</a></div></div><div class="abstract-text" id="abstract-text"><p>Model-Driven Engineering (MDE) supports the development of large-scale, complex systems through abstraction, automation, and traceability. The rise of Large Language Models (LLMs) has renewed interest in reshaping MDE, with recent studies exploring their use in tasks such as model generation, model comprehension, as well as model to code and test generation. While early results suggest improved productivity and lower barriers to modeling, their overall impact remains unclear. To address this, we conduct a Systematic Literature Review (SLR) and analyze 235 primary studies. We examine MDE tasks addressed, how LLMs were leveraged, benchmarking and evaluation practices, and the availability of tools and datasets. Results indicate a rapidly growing research trend, covering 25 types of MDE tasks, with model generation as the dominant focus. Unified Modeling Language (UML), Domain-Specific Languages (DSLs), and Business Process Model and Notation (BPMN) are the most frequently targeted formalisms. GPT-family models and zero-shot prompting are most commonly used, with fine-tuning and retrieval-augmented generation (RAG) as typical enhancement techniques. API-based LLM access and single-LLM architectures are the prevailing design choices. Benchmarking and evaluation studies remain narrow in scope. Evaluations primarily emphasize correctness, with limited benchmarking in realistic settings and insufficiently comprehensive replication materials.</p></div></div>
+  <div class="pillars"><article class="pillar"><span class="number">01 / APPLICATION SCOPE</span><h3>Models, tasks &amp; engineering contexts</h3><p>SE activities and tasks, MDE tasks, modeling languages, model types, and application domains.</p><a href="catalog.html?group=scope" data-icon="catalog">Explore this category</a></article><article class="pillar"><span class="number">02 / TECHNICAL CHARACTERIZATION</span><h3>LLM techniques &amp; integration</h3><p>Foundation models, prompting, enhancement techniques, MDE tool integration, and human involvement.</p><a href="catalog.html?group=technical" data-icon="catalog">Explore this category</a></article><article class="pillar"><span class="number">03 / EVALUATION PRACTICES</span><h3>Benchmarks, metrics &amp; replication</h3><p>Benchmarking studies, effectiveness and cost metrics, comparison baselines, and public replication materials.</p><a href="catalog.html?group=evaluation" data-icon="catalog">Explore this category</a></article></div>
+</div></section>
+<section class="section wash" id="collection"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">Study collection</p><h2>How the primary studies were collected</h2></div><a href="downloads/final_selection.csv" download data-icon="save">Download the full dataset</a></div>
+  <div class="collection-top">
+    <p>On <strong>16 June 2025</strong>, we searched ACM, IEEE Xplore, Scopus, Springer Nature Link, and Web of Science using two groups of search terms: one covering MDE concepts, modeling languages, and notations, and the other covering LLMs, generative and agentic AI, and major model families. Terms within each group were joined with OR, and the two groups were combined with AND. The searches retrieved <strong>3,412 records</strong> published between 2017 and 2025.</p>
+    <p>After removing duplicates, we applied the inclusion and exclusion criteria to identify English-language papers addressing software engineering activities and specific MDE tasks, including upstream tasks that support MDE. Eligible studies proposed LLM-based methods or visions, or benchmarked LLM-based approaches. We excluded surveys and systematic literature reviews, doctoral symposium papers, and publication types such as books, editorials, and letters. The three authors independently applied the criteria and discussed disagreements until consensus was reached, producing an initial set of <strong>128 primary studies</strong>.</p>
+    <p>Using these studies as the starting point, we performed backward and forward snowballing on <strong>31 October 2025</strong>, examining their references and publications citing them. We applied the same selection criteria throughout and continued until no additional relevant publications could be identified. Backward snowballing added <strong>26 studies</strong> and forward snowballing added <strong>81 studies</strong>. Through discussion and agreement among all three authors, these 107 additional studies were combined with the initial set to form the final collection of <strong>235 primary studies</strong>.</p>
+  </div>
+  <figure class="figure"><button class="figure-button" data-enlarge="assets/figures/collection.png" data-caption="Figure 2. The process of collecting the primary studies." aria-label="Enlarge the study collection diagram"><img src="assets/figures/collection.png" alt="Original paper Figure 2: database retrieval, screening, and snowballing leading to 235 primary studies." loading="lazy" width="1800" height="720"></button><figcaption><strong>Study collection.</strong> Select the image to enlarge it.</figcaption></figure>
+  <div class="disclosures collection-details">
+    <details class="method-detail">
+      <summary>Inclusion and exclusion criteria <span class="method-hint">7 selection rules</span></summary>
+      <div class="method-body">
+        <p class="method-intro">The same criteria were applied during database screening and snowballing.</p>
+        <div class="criteria-columns">
+          <section class="criteria-group" aria-labelledby="inclusion-title"><h3 id="inclusion-title">Inclusion requirements</h3><p>All four requirements must be met.</p><ol class="criteria-list" id="inclusion-list"></ol></section>
+          <section class="criteria-group exclusion-group" aria-labelledby="exclusion-title"><h3 id="exclusion-title">Exclusion rules</h3><p>Publication types outside the review scope.</p><ol class="criteria-list" id="exclusion-list" start="5"></ol></section>
+        </div>
+      </div>
+    </details>
+    <details class="method-detail">
+      <summary>Search terms and strategy <span class="method-hint">2 groups joined by AND</span></summary>
+      <div class="method-body">
+        <p class="method-intro">The search requires a match from both groups. Within each group, alternative terms are joined by <strong>OR</strong>, following Figure 1 of the paper.</p>
+        <div class="search-term-groups">
+          <section class="term-group" aria-labelledby="mde-terms-title"><div class="term-heading"><h3 id="mde-terms-title">MDE-related terms</h3><span class="term-logic">Match any · OR</span></div><ul class="term-list" id="mde-terms"></ul></section>
+          <div class="query-connector"><span>AND</span></div>
+          <section class="term-group" aria-labelledby="llm-terms-title"><div class="term-heading"><h3 id="llm-terms-title">LLM-related terms</h3><span class="term-logic">Match any · OR</span></div><ul class="term-list" id="llm-terms"></ul></section>
+        </div>
+        <details class="full-query"><summary>View the complete search query</summary><pre class="query" id="search-query"></pre></details>
+      </div>
+    </details>
+  </div>
+</div></section>
+<section class="section" id="taxonomy"><div class="wrap">
+  <div class="section-heading"><div><h2>Definitions and Classifications</h2></div><a href="catalog.html" data-icon="catalog">Browse the classified studies</a></div>
+  <p class="section-intro">Developed using a bottom-up strategy informed by the primary studies and existing literature, these definitions support consistent classification and comparison. Explore a category to find relevant studies.</p>
+  <div class="tab-list" role="tablist" aria-label="Taxonomy views"><button class="tab" id="tab-papers" role="tab" aria-selected="true" aria-controls="panel-papers" data-tab="papers">Paper types</button><button class="tab" id="tab-tasks" role="tab" aria-selected="false" aria-controls="panel-tasks" data-tab="tasks" tabindex="-1">MDE tasks</button><button class="tab" id="tab-models" role="tab" aria-selected="false" aria-controls="panel-models" data-tab="models" tabindex="-1">Model types</button><button class="tab" id="tab-domains" role="tab" aria-selected="false" aria-controls="panel-domains" data-tab="domains" tabindex="-1">Application domains</button><button class="tab" id="tab-evaluation" role="tab" aria-selected="false" aria-controls="panel-evaluation" data-tab="evaluation" tabindex="-1">Effectiveness metrics</button></div>
+  <div class="tab-panel" id="panel-papers" role="tabpanel" aria-labelledby="tab-papers"><p class="tab-note">The four paper types defined in the review. Counts cover all 235 primary studies.</p><div class="taxonomy-grid" id="paper-type-list"></div></div>
+  <div class="tab-panel" id="panel-tasks" role="tabpanel" aria-labelledby="tab-tasks" hidden><p class="tab-note">25 task types across the full corpus: 24 in proposed-method studies, plus model visualization in a benchmarking study. Counts below explicitly distinguish these scopes.</p><div class="task-grid" id="task-list"></div><button class="button show-more" id="show-all-tasks" aria-expanded="false" data-icon="plus">Show all 25 task definitions</button></div>
+  <div class="tab-panel" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden><p class="tab-note">Seven categories. Counts are distinct studies within the 159 proposed-method studies; a study may cover multiple categories. Value models belong to Structure/Architecture.</p><div class="taxonomy-grid" id="model-categories"></div></div>
+  <div class="tab-panel" id="panel-domains" role="tabpanel" aria-labelledby="tab-domains" hidden><p class="tab-note">The nine categories in the application-domain extraction schema. Counts cover all 235 primary studies; catalog queries group the recorded domain labels under these categories.</p><div class="taxonomy-grid" id="domain-list"></div></div>
+  <div class="tab-panel" id="panel-evaluation" role="tabpanel" aria-labelledby="tab-evaluation" hidden><p class="tab-note">The six dimensions of effectiveness metrics from Table 16. Time and resource costs are analyzed separately.</p><div class="dimension-list" id="dimension-list"></div><p class="tab-note" style="margin-top:24px"><a href="catalog.html?group=evaluation" data-icon="compare">Explore this category</a></p></div>
+</div></section>
+<section class="section wash" id="findings" aria-labelledby="findings-title"><div class="wrap">
+  <div class="section-heading"><h2 id="findings-title">Findings</h2></div>
+  <div class="findings-parts">
+    <article class="finding-part" aria-labelledby="finding-summary-1">
+      <header class="finding-part-heading"><span class="finding-part-number">01</span><h3 id="finding-summary-1">Bibliometric Analysis</h3></header>
+      <div class="finding-summary">
+        <p>Publications in this area have increased dramatically in recent years, particularly from 2023 to October 2025. The review covers 235 primary studies, with 26 published in 2023, 84 in 2024, and 119 through October 2025.</p>
+        <p>The venues are highly diverse. MODELS and its companion proceedings, RE workshops, ER, and SoSyM attract multiple studies. Overall, the majority appear in conferences and workshops: 147 conference papers, 49 workshop papers, and 39 journal papers.</p>
+        <p>Most studies propose concrete methods: 159 (67.66%) introduce solutions, 57 report benchmarking and evaluation, 15 present new ideas or visions, and 4 demonstrate tools. The 159 proposed-method studies underpin the analyses of application scope and technical characterization.</p>
+      </div>
+    </article>
+    <article class="finding-part" aria-labelledby="finding-summary-2">
+      <header class="finding-part-heading"><span class="finding-part-number">02</span><h3 id="finding-summary-2">Application Scope</h3></header>
+      <div class="finding-summary">
+        <p><em>Model generation</em> is the most targeted task, followed by model comprehension, completion, and analysis. Most primary studies do not target specific <em>SE phases</em>: roughly two thirds address SE Models and Methods, and requirements engineering dominates the remainder. Regarding <em>modeling languages</em>, UML is the most targeted, followed by DSL and BPMN. The most common combination is UML + model generation, followed by DSL + model generation and BPMN + model generation.</p>
+        <p>The studies are roughly balanced between <em>structural and behavioral models</em>. Class diagrams dominate the structural category, while process models dominate the behavioral category.</p>
+        <p>Overall, the considered model types are diverse. Most studies propose <em>domain-agnostic MDE</em> methods, tools, or frameworks, emphasizing general applicability rather than domain-specific validation.</p>
+      </div>
+    </article>
+    <article class="finding-part" aria-labelledby="finding-summary-3">
+      <header class="finding-part-heading"><span class="finding-part-number">03</span><h3 id="finding-summary-3">Technical Characterization</h3></header>
+      <div class="finding-summary">
+        <p>GPT overwhelmingly dominates the primary studies, with other foundation models used far less frequently in a clear long-tail distribution. Moreover, API-based access and single-LLM architectures are the prevailing design choices, while chat-based interaction and heterogeneous multi-LLM solutions remain relatively uncommon. Zero-shot and few-shot are the most frequently applied single prompting techniques, and some effort has been made on experimenting hybrid prompting strategies.</p>
+        <p>Only 26.4% of the primary studies employed enhancement techniques, with RAG and fine-tuning being the most commonly adopted. LLaMA and GPT are dominantly combined with fine-tuning and RAG.</p>
+        <p>PlantUML and EMF are the most frequently used tools with PlantUML mainly applied to class models and EMF to DSMs, while many other tools support diverse MDE tasks. Humans are mostly involved to provide feedback on refining generated artifacts.</p>
+      </div>
+    </article>
+    <article class="finding-part" aria-labelledby="finding-summary-4">
+      <header class="finding-part-heading"><span class="finding-part-number">04</span><h3 id="finding-summary-4">Benchmarking and Evaluation Practices</h3></header>
+      <div class="finding-summary">
+        <p>Benchmarking and evaluation studies remain narrow in scope, focusing on established MDE tasks, general domains, UML and BPMN, and mainstream LLM and prompting comparisons.</p>
+        <p>Current evaluations of the effectiveness of LLM-based MDE solutions rely on a diverse set of metrics, which can be broadly categorized into semantic and syntactic dimensions. Among these, correctness is the primary focus, alongside other aspects such as completeness, hallucination, and complexity. Time and resource costs are also considered in some primary studies, although more fine-grained time-related metrics are still needed.</p>
+        <p>LLMs are commonly used as baselines when assessing proposed LLM-based MDE approaches. However, existing benchmarks are largely confined to controlled academic settings, and there is a notable lack of transparency and publicly available replication materials.</p>
+      </div>
+    </article>
+  </div>
+</div></section>
+<section class="section" id="roadmap"><div class="wrap">
+  <h2>Future Research Roadmap</h2>
+  <p class="section-intro">LLM-based MDE is still at an early but rapidly expanding stage. The review identifies six research directions to broaden MDE lifecycle support, improve generalization across modeling languages and model types, strengthen human involvement and tool integration, and advance empirical evaluation and industrial validation.</p>
+  <div class="roadmap-grid">
+    <article class="roadmap-item"><div><h3>Broader support across the MDE lifecycle</h3><p>Extend beyond isolated generation to model evolution, transformation, validation, synchronization, traceability, testing, verification, and code generation within complete MDE workflows.</p></div></article>
+    <article class="roadmap-item"><div><h3>Generalization across languages and model types</h3><p>Examine which techniques transfer and where language-specific prompting, metamodel-aware generation, or fine-tuning is needed. Reuse verified models and associated evidence for training and evaluation.</p></div></article>
+    <article class="roadmap-item"><div><h3>LLM-based modeling with humans in the loop</h3><p>Study interactive modeling assistants, explainability, uncertainty communication, conversational refinement, and responsibility sharing. Learn from human edits, corrections, and validation decisions.</p></div></article>
+    <article class="roadmap-item"><div><h3>LLM techniques and tool integration for MDE</h3><p>Incorporate metamodels, constraints, graph structures, repositories, validation feedback, and reusable modeling skills. Connect LLMs with existing modeling, transformation, and verification tools.</p></div></article>
+    <article class="roadmap-item"><div><h3>Empirical evaluation and benchmarking</h3><p>Evaluate syntax, semantics, completeness, metamodel conformance, maintainability, and downstream usefulness. Prioritize transparent reporting, reusable benchmarks, and public replication materials.</p></div></article>
+    <article class="roadmap-item"><div><h3>Industrial and domain-specific validation</h3><p>Evaluate specialized constraints, modeling conventions, legacy artifacts, and toolchains in real settings. Establish where general-purpose LLMs suffice and where domain adaptation is needed.</p></div></article>
+  </div>
+</div></section>
+<section class="section wash" id="citation"><div class="wrap citation-layout"><div><h2>Use &amp; Cite</h2><p>The catalog makes the study-level classifications accessible alongside the paper. Download the original data and the study ID–reference mapping to trace the findings.</p><div class="actions" style="justify-content:flex-start"><a class="button" href="downloads/final_selection.csv" download data-icon="save">Dataset CSV</a><a class="button" href="downloads/index_reference.pdf" target="_blank" rel="noopener" data-icon="save">ID–reference index</a></div></div><div class="citation-code"><pre id="citation-text"></pre><button class="button small" data-copy-citation data-icon="copy">Copy BibTeX</button></div></div></section>
+</main>
+<footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">WSELab</div>
+          <p class="footer-description">
+            We advance SE with insight-driven design to build software that redefines what's possible.
+          </p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li class="footer-item"><a href="../../index.html#about" class="footer-link">About</a></li>
+            <li class="footer-item"><a href="../../index.html#research" class="footer-link">Research</a></li>
+            <li class="footer-item"><a href="../../news.html" class="footer-link">News</a></li>
+            <li class="footer-item"><a href="../../model-copilot.html" class="footer-link">ModelCopilot</a></li>
+            <li class="footer-item"><a href="../../index.html#team" class="footer-link">Team</a></li>
+            <li class="footer-item"><a href="../../index.html#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 WSE Laboratory. All rights reserved.</p>
+        <p>All research materials including videos are protected intellectual property.</p>
+      </div>
+    </div>
+  </footer>
+<dialog id="image-dialog" class="image-dialog" aria-label="Expanded paper figure"><button class="dialog-close" aria-label="Close figure">×</button><img id="expanded-image" alt=""><p id="expanded-caption"></p></dialog>
+<dialog id="chart-dialog" class="chart-dialog" aria-labelledby="chart-dialog-title"><button class="dialog-close" type="button" aria-label="Close chart">&times;</button><h3 id="chart-dialog-title"></h3><div id="chart-dialog-body"></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<noscript><p class="noscript">JavaScript enables the taxonomy explorer and study catalog. You can still <a href="downloads/final_selection.csv" data-icon="save">download the full dataset</a> or <a href="https://doi.org/10.1145/3859883">read the paper</a>.</p></noscript>
+</body></html>
